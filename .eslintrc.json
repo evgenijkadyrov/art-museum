@@ -18,14 +18,16 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "['./tsconfig.json', './tsconfig.node.json']",
+    "tsconfigRootDir": "__dirname"
   },
   "plugins": [
     "react",
     "import",
     "prettier",
     "react-hooks",
-    "@typescript-eslint"
+    "@typescript-eslint/recommended-type-checked"
   ],
   "overrides": [{ "files": [
     ".js",

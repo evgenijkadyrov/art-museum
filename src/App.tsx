@@ -1,11 +1,14 @@
-
-
+import { Header } from '@components/Header';
+import { Contain } from '@components/Contain';
+import { Footer } from '@components/Footer';
 
 function App() {
 
   return (
     <>
-     Hello
+      <Header />
+      <Contain />
+      <Footer />
     </>
   );
 }
