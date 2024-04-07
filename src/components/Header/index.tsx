@@ -1,10 +1,10 @@
+export function Header() {
+  const name = ' Petya'
 
-
-export const Header = () => {
   return (
     <div>
-      Header
+      Header new
+      {name}
     </div>
-  );
-};
-
+  )
+}

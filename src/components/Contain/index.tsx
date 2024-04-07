@@ -1,10 +1,3 @@
-
-
-export const Contain = () => {
-  return (
-    <div>
-      Contain
-    </div>
-  );
-};
-
+export function Contain() {
+  return <div>Contain</div>
+}
