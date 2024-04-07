@@ -6,7 +6,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@b/*": ["src/home/a/b/*"]
+      "@assets": ["src/assets"]
     },
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",

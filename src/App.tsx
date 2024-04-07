@@ -1,14 +1,15 @@
 import { Header } from '@components/Header'
-import { Contain } from '@components/Contain'
+import { Content } from '@components/Content'
 import { Footer } from '@components/Footer'
+import { AppStyled } from './styles'
 
 function App() {
   return (
-    <>
+    <AppStyled>
       <Header />
-      <Contain />
+      <Content />
       <Footer />
-    </>
+    </AppStyled>
   )
 }
 
