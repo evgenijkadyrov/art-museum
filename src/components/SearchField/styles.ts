@@ -5,6 +5,7 @@ export const SearchFormWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 120px;
 `
 
 export const SearchInput = styled(Field)`
