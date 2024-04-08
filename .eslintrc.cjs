@@ -42,8 +42,8 @@ module.exports = {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "spaced-comment": ["error", "always"],
-
     "react/jsx-uses-vars": "error",
+    "react/no-unescaped-entities": 0,
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
