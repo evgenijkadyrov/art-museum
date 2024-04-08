@@ -1,34 +1,15 @@
-import { StyledContent, Wrapper } from './styles'
-import { SearchForm } from '@components/SearchField'
-import { ItemsList } from '@components/MainItems/ItemsGalary'
-import { Pagination } from '@components/MainItems/Pagination'
-import { TitleGallery } from '@/common/TitleForGallery'
+import { HomeStyled } from '@/pages/home/styles'
+import { Header } from '@components/Header'
+import { Footer } from '@components/Footer'
 import { AdditionalItems } from '@components/AdditionalItems'
+import { TitleGallery } from '@/common/TitleForGallery'
 import { TitlePage } from '@/common/TitlePage'
-const data = [
-  {
-    id: 6010,
-    title: 'Number 19',
-    artist_title: 'Mark Rothko',
-    image_id: '0a0e16c5-8510-bb2d-b2ca-424feae48d5c',
-  },
-  {
-    id: 2816,
-    title: 'Interior at Nice',
-    artist_title: 'Henri Matisse',
-    image_id: '2193cdda-2691-2802-0776-145dee77f7ea',
-  },
-  {
-    id: 14598,
-    title: 'The Beach at Sainte-Adresse',
-    artist_title: 'Claude Monet',
-    image_id: '95be2572-b53d-8e7b-abc9-10eb48d4fa5d',
-  },
-]
-const data2 = [
+import styled from 'styled-components'
+
+const favorites = [
   {
     id: 13793,
-    title: 'Three Children',
+    title: 'Four Children',
     artist_title: 'Constantin Brancusi',
     image_id: '3385d31f-8a06-2d37-e312-1e8f90ef0426',
   },
@@ -81,19 +62,34 @@ const data2 = [
     image_id: 'a8fe598b-a83b-1cd4-e4fb-ffc63599f249',
   },
 ]
-// https://www.artic.edu/iiif/2/{identifier}/full/843,/0/default.jpg
-export function Content() {
+export const Favorites = () => {
   return (
-    <Wrapper>
-      <StyledContent>
-        <TitlePage firstLine={'Lets Find Some '} secondLine={'Here!'} isActive />
-        <SearchForm />
-        <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
-        <ItemsList data={data} />
-        <Pagination />
-        <TitleGallery firstLineText={'Here some more'} secondLineText={'Other works for you'} />
-        <AdditionalItems data={data2} />
-      </StyledContent>
-    </Wrapper>
+    <HomeStyled>
+      <Header />
+      <Layout>
+        <Content>
+          <TitlePage firstLine={'Here re Yours'} secondLine={'Favorites'} colored />
+          <TitleGallery
+            firstLineText={'Saved bu you'}
+            secondLineText={'Your favorites list'}
+            color={'red'}
+          />
+          <AdditionalItems data={favorites} />
+        </Content>
+      </Layout>
+
+      <Footer />
+    </HomeStyled>
   )
 }
+
+export const Layout = styled.div`
+  width: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  flex: 1;
+`
+export const Content = styled.main`
+  width: 1280px;
+  margin: 0 auto;
+`

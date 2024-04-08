@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -25,16 +26,21 @@ export const MuseumName = styled.div`
   display: flex;
   align-self: end;
   padding: 5px;
+
   span {
     margin-left: 5px;
     font-weight: bold;
     color: #e0a449;
   }
 `
-export const Navigation = styled.ul`
+export const Navigation = styled.nav`
   display: flex;
   margin-top: 30px;
+  gap: 20px;
   align-items: center;
   align-content: end;
+`
+export const StyledLink = styled(Link)`
+  text-decoration: none;
   color: white;
 `

@@ -1,4 +1,4 @@
-import { Container, Logo, MuseumName, Navigation, StyledHeader } from './styles'
+import { Container, Logo, MuseumName, Navigation, StyledHeader, StyledLink } from './styles'
 import { LogoMuseum } from '@/assets/LogoMuseum'
 
 export function Header() {
@@ -12,7 +12,13 @@ export function Header() {
             <span>Art</span>
           </MuseumName>
         </Logo>
-        <Navigation>Your favorites</Navigation>
+
+        <Navigation>
+          <StyledLink to={'/'}>Home</StyledLink>
+          <StyledLink to={'/favorites'}>Your favorites</StyledLink>
+          {/* temp link, delete later*/}
+          <StyledLink to={'/info'}>Info</StyledLink>
+        </Navigation>
       </Container>
     </StyledHeader>
   )

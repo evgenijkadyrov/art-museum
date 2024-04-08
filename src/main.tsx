@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import GlobalStyles from './globalStyles'
 import { Home } from '@/pages/home'
 import { Info } from '@/pages/info'
+import { Favorites } from '@/pages/favorites'
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: '/info',
     element: <Info />,
+  },
+  {
+    path: '/favorites',
+    element: <Favorites />,
   },
 ])
 ReactDOM.createRoot(document.getElementById('root')!).render(
