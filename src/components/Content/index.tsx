@@ -4,6 +4,7 @@ import { SearchForm } from '@components/SearchField'
 import { ItemsList } from '@components/MainItems/ItemsGalary'
 import { Pagination } from '@components/MainItems/Pagination'
 import { TitleGallery } from '@/common/TitleForGallery'
+import { AdditionalItems } from '@components/AdditionalItems'
 const data = [
   {
     id: 6010,
@@ -35,6 +36,7 @@ export function Content() {
         <ItemsList data={data} />
         <Pagination />
         <TitleGallery firstLineText={'Here some more'} secondLineText={'Other works for you'} />
+        <AdditionalItems />
       </StyledContent>
     </Wrapper>
   )
