@@ -1,5 +1,5 @@
 import { Header } from '@components/Header'
-import { Content } from '@components/Content'
+import { Content } from '@components/ContentHomePage'
 import { Footer } from '@components/Footer'
 import { HomeStyled } from '@/pages/home/styles'
 

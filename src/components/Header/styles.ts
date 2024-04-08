@@ -3,17 +3,16 @@ import styled from 'styled-components'
 export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  height: 127px;
   width: 100%;
   background-color: rgb(54, 53, 53);
 `
 export const Container = styled.div`
   width: 1280px;
+  height: 127px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 63px;
 `
 export const Logo = styled.div`
   display: flex;
@@ -34,6 +33,8 @@ export const MuseumName = styled.div`
 `
 export const Navigation = styled.ul`
   display: flex;
-  align-self: end;
+  margin-top: 30px;
+  align-items: center;
+  align-content: end;
   color: white;
 `
