@@ -22,7 +22,7 @@ export const AdditionalItems: FC<AdditionalItemsProps> = ({ data }) => {
       {data.map((el) => {
         return (
           <AdditionalItem key={el.id}>
-            <Image src={el.image_url} />
+            <Image background_url={el.image_url} />
             <WrapperContainer>
               <ItemTitle>{el.title}</ItemTitle>
               <ItemAuthor>{el.artist_title}</ItemAuthor>

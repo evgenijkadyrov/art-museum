@@ -33,16 +33,24 @@ export const Status = styled.div`
   font-weight: 700;
   margin-top: 10px;
 `
+
 export const ItemAuthor = styled.div`
   font-size: 15px;
   height: 26px;
   color: rgb(224, 164, 73);
   font-weight: 500;
 `
-export const Image = styled.img`
+interface ImageProps {
+  background_url: string
+}
+export const Image = styled.div<ImageProps>`
   width: 80px;
   height: 80px;
+  background-image: url(${(props) => props.background_url});
+  background-position: center;
+  background-size: cover;
 `
+
 export const AdditionalItem = styled.div`
   display: grid;
 
