@@ -1,21 +1,30 @@
 import { StyledContent, Wrapper } from './styles'
 import { SearchForm } from '@components/SearchField'
 import { ItemsList } from '@components/MainItems/ItemsGalary'
-import { Pagination } from '@components/MainItems/Pagination'
 import { TitleGallery } from '@/common/TitleForGallery'
 import { AdditionalItems } from '@components/AdditionalItems'
 import { TitlePage } from '@/common/TitlePage'
 import { Artwork } from '@/api/api'
 import { useFetchArtData } from '@/hooks/useFetchArtData'
 import { useFetchRecommendedArtData } from '@/hooks/useFetchRecommendedArtData'
+import { useState } from 'react'
+import { Pagination } from '@components/MainItems/Pagination'
+import { MAX_LENGTH_PAGINATION, PAGE_NUMBER_DEFAULT } from '@/constants/constants'
+import { useFetchPaginationInfo } from '@/hooks/useFetchPaginationInfo'
 
 export interface ArtworkWithImage extends Artwork {
   image_url: string
 }
 
 export function Content() {
-  const { artworks, isLoading } = useFetchArtData()
+  const [currentPage, setCurrentPage] = useState<number>(PAGE_NUMBER_DEFAULT)
+  const { artworks, isLoading } = useFetchArtData(currentPage)
   const { artworksRecommended } = useFetchRecommendedArtData()
+  const { totalPage } = useFetchPaginationInfo()
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage)
+  }
 
   return (
     <Wrapper>
@@ -25,7 +34,12 @@ export function Content() {
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
         {isLoading && <p>LOAding</p>}
         <ItemsList data={artworks} />
-        <Pagination />
+        <Pagination
+          currentPage={currentPage}
+          lastPage={totalPage}
+          maxLength={MAX_LENGTH_PAGINATION}
+          setCurrentPage={handlePageChange}
+        />
         <TitleGallery firstLineText={'Here some more'} secondLineText={'Other works for you'} />
         <AdditionalItems data={artworksRecommended} />
       </StyledContent>
