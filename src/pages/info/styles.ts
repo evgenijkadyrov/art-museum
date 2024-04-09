@@ -39,10 +39,13 @@ export const ContainerDescription = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `
-export const Image = styled.img`
+export const Image = styled.div`
   width: 500px;
   height: 570px;
   margin-right: 80px;
+  background-image: url(${(props) => props.background_url});
+  background-position: center;
+  background-size: contain;
 `
 export const WrapperContent = styled.div`
   margin-top: 120px;

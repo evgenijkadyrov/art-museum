@@ -9,6 +9,18 @@ export interface Artwork {
   artist_title: string
   image_id: string
 }
+export interface ArtworkById {
+  id: number
+  title: string
+  date_start: number
+  date_end: number
+  place_of_origin: string
+  dimensions: string | null
+  credit_line: string
+  copyright_notice: string | null
+  artist_title: string
+  image_id: string
+}
 
 const instance: AxiosInstance = axios.create({
   baseURL: 'https://api.artic.edu/api/v1/',
@@ -53,6 +65,17 @@ export async function fetchRecommendedArtworks(): Promise<Artwork[]> {
     return response.data.data
   } catch (error) {
     console.error('Error retrieving artworks:', error)
+    throw error
+  }
+}
+export const fetchArtworkById = async (id: number): Promise<ArtworkById> => {
+  try {
+    const response = await instance.get<Artwork>(
+      `/artworks/${id}?fields=date_start,date_end,credit_line,dimensions,place_of_origin,copyright_notice,artist_title,title,image_id`
+    )
+    return response.data.data
+  } catch (error) {
+    console.error('Error retrieving artwork:', error)
     throw error
   }
 }

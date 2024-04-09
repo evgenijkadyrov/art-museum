@@ -14,41 +14,41 @@ import {
   WrapperContent,
   WrapperHeader,
 } from '@/pages/info/styles'
+import { useParams } from 'react-router-dom'
+import { useFetchArtById } from '@/hooks/useFetchArtById'
 
 export const Info = () => {
+  const { id } = useParams()
+  const { artwork } = useFetchArtById(id)
+
   return (
     <WrapperHeader>
       <Header />
       <Layout>
         <Content>
           <WrapperContent>
-            <Image
-              src={
-                'https://www.artic.edu/iiif/2/968e49fe-a6a4-bf2a-ce6e-948fa31f13ac/full/843,/0/default.jpg'
-              }
-              alt={'df'}
-            />
+            <Image background_url={artwork?.image_url} />
             <ContainerDescription>
               <CommonInformation>
-                <TitleOfArticle>
-                  Charlies V, bust length holding a sword facing right
-                </TitleOfArticle>
-                <ArticleAuthor>Giviano Britto</ArticleAuthor>
-                <AuthorYearsLive>1535-45</AuthorYearsLive>
+                <TitleOfArticle>{artwork?.title}</TitleOfArticle>
+                <ArticleAuthor>{artwork?.artist_title}</ArticleAuthor>
+                <AuthorYearsLive>
+                  {artwork?.date_start}-{artwork?.date_end}
+                </AuthorYearsLive>
               </CommonInformation>
               <OverviewInformation>
                 Overview
                 <OverviewItemText>
-                  Artist nationality: <span>German</span>
+                  Artist nationality: <span>{artwork?.place_of_origin}</span>
                 </OverviewItemText>
                 <OverviewItemText>
-                  Dimensions Sheet: <span> 19 3/8 *13 11/16</span>
+                  Dimensions Sheet: <span> {artwork?.dimensions}</span>
                 </OverviewItemText>
                 <OverviewItemText>
-                  Credit Line: <span> Rogers Fund</span>
+                  Credit Line: <span> {artwork?.credit_line}</span>
                 </OverviewItemText>
                 <OverviewItemText>
-                  Repository: <span>Metropolian </span>
+                  Repository: <span>{artwork?.copyright_notice} </span>
                 </OverviewItemText>
                 <OverviewItemText>
                   <span>Public</span>

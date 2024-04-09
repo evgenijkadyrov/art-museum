@@ -10,6 +10,7 @@ export const Image = styled.div<ImageProps>`
   background-image: url(${(props) => props.background_url});
   background-position: center;
   background-size: cover;
+  cursor: pointer;
 `
 export const WrapperItem = styled.div`
   display: flex;
