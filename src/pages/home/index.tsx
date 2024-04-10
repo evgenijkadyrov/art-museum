@@ -6,11 +6,16 @@ import { ErrorBoundary } from '@components/ErrorBoundary'
 
 export const Home = () => {
   return (
+    <Layout>
+      <Content />
+    </Layout>
+  )
+}
+export const Layout = ({ children }) => {
+  return (
     <HomeStyled>
       <Header />
-      <ErrorBoundary>
-        <Content />
-      </ErrorBoundary>
+      <ErrorBoundary>{children}</ErrorBoundary>
       <Footer />
     </HomeStyled>
   )

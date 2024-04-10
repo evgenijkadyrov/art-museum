@@ -48,10 +48,13 @@ export const Image = styled.div`
   background-size: contain;
 `
 export const WrapperContent = styled.div`
-  margin-top: 120px;
-  margin-bottom: 120px;
+  padding-top: 120px;
+  padding-bottom: 120px;
   display: flex;
-  width: 100%;
+  flex: 1;
+  justify-content: center;
+  width: 1280px;
+  margin: 0 auto;
 `
 export const Layout = styled.div`
   width: 100%;
@@ -59,14 +62,7 @@ export const Layout = styled.div`
   display: flex;
   flex: 1;
 `
-export const WrapperHeader = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`
+
 export const Content = styled.main`
-  width: 1280px;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
+  background-color: #f5f5f5;
 `
