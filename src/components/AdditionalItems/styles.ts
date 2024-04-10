@@ -22,9 +22,13 @@ export const WrapperContainer = styled.div`
 `
 export const ItemTitle = styled.div`
   font-size: 17.5px;
+  width: 250px;
   color: rgb(57, 57, 57);
   font-weight: 500;
   margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 export const Status = styled.div`
   font-size: 15px;
