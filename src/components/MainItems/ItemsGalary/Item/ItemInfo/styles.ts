@@ -21,9 +21,13 @@ export const WrapperContainer = styled.div`
 `
 export const ItemTitle = styled.div`
   font-size: 17.5px;
+  width: 250px;
   color: rgb(57, 57, 57);
   font-weight: 500;
   margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 export const Status = styled.div`
   font-size: 15px;
@@ -34,9 +38,13 @@ export const Status = styled.div`
 `
 export const ItemAuthor = styled.div`
   font-size: 15px;
+  width: 200px;
   height: 26px;
   color: rgb(224, 164, 73);
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 export const WrapperItemInfo = styled.div`
   display: flex;
