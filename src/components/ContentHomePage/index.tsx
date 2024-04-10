@@ -1,5 +1,4 @@
 import { StyledContent, Wrapper } from './styles'
-import { SearchForm } from '@components/SearchField'
 import { ItemsList } from '@components/MainItems/ItemsGalary'
 import { TitleGallery } from '@/common/TitleForGallery'
 import { AdditionalItems } from '@components/AdditionalItems'
@@ -11,6 +10,7 @@ import { useState } from 'react'
 import { Pagination } from '@components/MainItems/Pagination'
 import { MAX_LENGTH_PAGINATION, PAGE_NUMBER_DEFAULT } from '@/constants/constants'
 import { useFetchPaginationInfo } from '@/hooks/useFetchPaginationInfo'
+import { SearchArtworkForm } from '@components/SearchField/Search'
 
 export interface ArtworkWithImage extends Artwork {
   image_url: string
@@ -30,7 +30,7 @@ export function Content() {
     <Wrapper>
       <StyledContent>
         <TitlePage firstLine={'Lets Find Some '} secondLine={'Here!'} isActive />
-        <SearchForm />
+        <SearchArtworkForm />
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
         {isLoading && <p>LOAding</p>}
         <ItemsList data={artworks} />

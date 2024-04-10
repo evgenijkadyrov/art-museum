@@ -22,7 +22,7 @@ export interface ArtworkById {
   image_id: string
 }
 
-const instance: AxiosInstance = axios.create({
+export const instance: AxiosInstance = axios.create({
   baseURL: 'https://api.artic.edu/api/v1/',
 })
 export async function fetchArtworks(currentPage: number): Promise<Artwork[]> {
@@ -72,6 +72,22 @@ export const fetchArtworkById = async (id: number): Promise<ArtworkById> => {
   try {
     const response = await instance.get<Artwork>(
       `/artworks/${id}?fields=date_start,date_end,credit_line,dimensions,place_of_origin,copyright_notice,artist_title,title,image_id`
+    )
+    return response.data.data
+  } catch (error) {
+    console.error('Error retrieving artwork:', error)
+    throw error
+  }
+}
+export interface SearchArtWorkResponse {
+  _score: number
+  title: string
+  id: number
+}
+export const searchArtwork = async (value: string): Promise<SearchArtWorkResponse> => {
+  try {
+    const response = await instance.get<SearchArtWorkResponse>(
+      `/artworks/search?q=${value}&fields=title,id`
     )
     return response.data.data
   } catch (error) {

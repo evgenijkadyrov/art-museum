@@ -41,7 +41,7 @@ export const ContainerDescription = styled.div`
 `
 export const Image = styled.div`
   width: 500px;
-  height: 570px;
+  max-height: 570px;
   margin-right: 80px;
   background-image: url(${(props) => props.background_url});
   background-position: center;
