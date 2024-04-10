@@ -32,8 +32,8 @@ export function Content() {
         <TitlePage firstLine={'Lets Find Some '} secondLine={'Here!'} isActive />
         <SearchArtworkForm />
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
-        {isLoading && <p>LOAding</p>}
-        <ItemsList data={artworks} />
+
+        <ItemsList data={artworks} isLoading={isLoading} />
         <Pagination
           currentPage={currentPage}
           lastPage={totalPage}
@@ -41,7 +41,7 @@ export function Content() {
           setCurrentPage={handlePageChange}
         />
         <TitleGallery firstLineText={'Here some more'} secondLineText={'Other works for you'} />
-        <AdditionalItems data={artworksRecommended} />
+        <AdditionalItems data={artworksRecommended} isLoading={isLoading} />
       </StyledContent>
     </Wrapper>
   )
