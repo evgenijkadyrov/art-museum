@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
-import { ArtworkWithImage } from '@components/ContentHomePage/interfaces'
 
-interface UseFilteredArtListProps {
-  filteredArtList: ArtworkWithImage[]
+import { ArtworkByIdWithImage } from '@/types/interfaces'
+
+export interface UseFilteredArtListProps {
+  filteredArtList: ArtworkByIdWithImage[]
 }
 
 export const useFilteredArtList = (
   filter: string,
-  artList: ArtworkWithImage[]
+  artList: ArtworkByIdWithImage[]
 ): UseFilteredArtListProps => {
-  const [filteredArtList, setFilteredArtList] = useState<ArtworkWithImage[]>([])
+  const [filteredArtList, setFilteredArtList] = useState<ArtworkByIdWithImage[]>([])
 
   useEffect(() => {
     const filterArtList = () => {

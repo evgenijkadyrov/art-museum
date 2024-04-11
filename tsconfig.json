@@ -29,6 +29,8 @@
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true
   },
-  "include": [".eslintrc.cjs", "src"],
+  "include": [".eslintrc.cjs", "src",
+    "index.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

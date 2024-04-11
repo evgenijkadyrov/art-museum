@@ -1,26 +1,29 @@
 import { fetchArtLists } from '@/api/api'
 import { useEffect, useState } from 'react'
 import { generateLink } from '@/utils/generateLink.helper'
-import { ArtworkWithImage } from '@components/ContentHomePage'
+import { ArtworkByIdWithImage } from '@/types/interfaces'
 
-interface UseFetchArtListProps {
-  artList: ArtworkWithImage[]
+export interface UseFetchArtListProps {
+  artList: ArtworkByIdWithImage[]
   isLoading: boolean
 }
 
 export function useFetchArtList(): UseFetchArtListProps {
-  const [artList, setArtList] = useState<ArtworkWithImage[]>([])
+  const [artList, setArtList] = useState<ArtworkByIdWithImage[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    const fetchArtList = async (): Promise<void> => {
+    const fetchArtList = async () => {
       setIsLoading(true)
       try {
         const res = await fetchArtLists()
-        const artworksWithImages: ArtworkWithImage[] = res.map((artwork) => ({
-          ...artwork,
-          image_url: generateLink(artwork.image_id),
-        }))
+        const artworksWithImages = res.map(
+          (artwork) =>
+            ({
+              ...artwork,
+              imageUrl: generateLink(artwork.image_id),
+            }) as ArtworkByIdWithImage
+        )
         setArtList(artworksWithImages)
       } catch (error) {
         console.error('Error retrieving artworks:', error)

@@ -39,7 +39,7 @@ export const ContainerDescription = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `
-export const Image = styled.div`
+export const Image = styled.div<{ background_url: string | undefined }>`
   width: 500px;
   max-height: 570px;
   margin-right: 80px;

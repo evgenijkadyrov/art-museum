@@ -1,14 +1,13 @@
-import { FC } from 'react'
 import { Item } from '@components/MainItems/ItemsGalary/Item'
-import { ArtworkWithImage } from '@components/ContentHomePage'
 import { WrapperItemsList } from './styles'
+import { ArtworkByIdWithImage } from '@/types/interfaces'
 
 interface ItemsListProps {
-  data: ArtworkWithImage[]
+  data: ArtworkByIdWithImage[]
   isLoading: boolean
 }
 
-export const ItemsList: FC<ItemsListProps> = ({ data, isLoading }) => {
+export const ItemsList = ({ data, isLoading }: ItemsListProps) => {
   return (
     <WrapperItemsList>
       {data.map((el) => {
