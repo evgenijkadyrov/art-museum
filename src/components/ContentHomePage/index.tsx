@@ -1,58 +1,60 @@
 import { StyledContent, Wrapper } from './styles'
 import { ItemsList } from '@components/MainItems/ItemsGalary'
-import { TitleGallery } from '@/common/TitleForGallery'
-import { AdditionalItems } from '@components/AdditionalItems'
 import { TitlePage } from '@/common/TitlePage'
-import { Artwork, SearchArtWork } from '@/api/api'
-import { useFetchArtData } from '@/hooks/useFetchArtData'
-import { useFetchRecommendedArtData } from '@/hooks/useFetchRecommendedArtData'
 import { useState } from 'react'
 import { Pagination } from '@components/MainItems/Pagination'
-import { MAX_LENGTH_PAGINATION, PAGE_NUMBER_DEFAULT } from '@/constants/constants'
+import { TitleGallery } from '@/common/TitleForGallery'
+import { ART_FOR_PAGE, MAX_LENGTH_PAGINATION } from '@/constants/constants'
+import { totalPageNumber } from '@/utils/generatePageCount'
+import { AdditionalItems } from '@components/AdditionalItems'
 import { SearchArtworkForm } from '@components/SearchField/Search'
+import {
+  ArtworkRecWithImageProps,
+  useFetchRecommendedArtData,
+} from '@/hooks/useFetchRecommendedArtData'
+import { calculateCurrentItems } from '@/utils/calculateCurrentItems'
+import { useFilteredArtList } from '@/hooks/useFiltredArtList'
+import { useFetchArtList } from '@/hooks/useFetchArtList'
+import { useHandlePageChange } from '@/hooks/useHandlePageChange'
 
-export interface ArtworkWithImage extends Artwork {
+export interface ArtworkWithImage extends ArtList {
   image_url: string
 }
 
-export function Content() {
-  const [currentPage, setCurrentPage] = useState<number>(PAGE_NUMBER_DEFAULT)
-  const [searchResults, setSearchResults] = useState<{
-    data: SearchArtWork[]
-    totalSearchPage: number
-  }>({
-    data: [],
-    totalSearchPage: 0,
-  })
-  const { artworks, isLoading, totalPage } = useFetchArtData(
-    currentPage,
-    !!searchResults.data.length
-  )
-  const { artworksRecommended } = useFetchRecommendedArtData()
+export interface ArtList {
+  date_start: number
+  date_end: number
+  place_of_origin: string
+  dimensions: string | null
+  credit_line: string
+  copyright_notice: string | null
+  id: number
+  title: string
+  artist_title: string
+  image_id: string
+  isLoading: boolean
+}
 
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage)
-  }
+export const Content = () => {
+  const [filter, setFilter] = useState('')
+  const { currentPage, setCurrentPage, handlePageChange } = useHandlePageChange()
+  const { artList, isLoading } = useFetchArtList()
+  const { artworksRecommended } = useFetchRecommendedArtData<ArtworkRecWithImageProps[]>()
+  const { filteredArtList } = useFilteredArtList(filter, artList)
+
+  const currentItems = calculateCurrentItems(artList, ART_FOR_PAGE, currentPage)
+  const currentItemsFilter = calculateCurrentItems(filteredArtList, ART_FOR_PAGE, currentPage)
 
   return (
     <Wrapper>
       <StyledContent>
         <TitlePage firstLine={'Lets Find Some '} secondLine={'Here!'} isActive />
-        <SearchArtworkForm
-          searchResultsState={[searchResults, setSearchResults]}
-          page={currentPage}
-          handlePageChange={handlePageChange}
-        />
+        <SearchArtworkForm setFilter={setFilter} setCurrentPage={setCurrentPage} />
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
-
-        <ItemsList
-          data={searchResults.data.length > 0 ? searchResults.data : artworks}
-          isLoading={isLoading}
-          isSearch={searchResults.data.length > 0}
-        />
+        <ItemsList data={filter ? currentItemsFilter : currentItems} isLoading={isLoading} />
         <Pagination
           currentPage={currentPage}
-          lastPage={searchResults.data.length > 0 ? searchResults.totalSearchPage : totalPage}
+          lastPage={totalPageNumber(filter ? filteredArtList.length : artList.length, ART_FOR_PAGE)}
           maxLength={MAX_LENGTH_PAGINATION}
           setCurrentPage={handlePageChange}
         />

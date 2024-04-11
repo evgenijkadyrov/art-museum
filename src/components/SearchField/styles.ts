@@ -22,6 +22,9 @@ export const StyledButton = styled.button`
 `
 export const ErrorStyled = styled.div`
   display: flex;
+  position: absolute;
+  top: 35px;
+  color: #ff5252;
   justify-content: flex-start;
 `
 export const SearchResultsContainer = styled.div`

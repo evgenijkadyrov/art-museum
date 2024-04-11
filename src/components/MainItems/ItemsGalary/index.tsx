@@ -2,15 +2,13 @@ import { FC } from 'react'
 import { Item } from '@components/MainItems/ItemsGalary/Item'
 import { ArtworkWithImage } from '@components/ContentHomePage'
 import { WrapperItemsList } from './styles'
-import { SearchArtWork } from '@/api/api'
 
 interface ItemsListProps {
-  data: ArtworkWithImage[] | SearchArtWork[]
+  data: ArtworkWithImage[]
   isLoading: boolean
-  isSearch: boolean
 }
 
-export const ItemsList: FC<ItemsListProps> = ({ data, isLoading, isSearch }) => {
+export const ItemsList: FC<ItemsListProps> = ({ data, isLoading }) => {
   return (
     <WrapperItemsList>
       {data.map((el) => {

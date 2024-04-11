@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { BookMark } from '@/assets/BookMark'
-import { ArtworkWithImage } from '@components/ContentHomePage'
 import { useNavigate } from 'react-router-dom'
 import {
   AdditionalItem,
@@ -13,9 +12,10 @@ import {
   WrapperContainer,
 } from '@components/AdditionalItems/styles'
 import { LoadingSpinner } from '@components/Loader'
+import { ArtworkRecWithImageProps } from '@/hooks/useFetchRecommendedArtData'
 
 interface AdditionalItemsProps {
-  data: ArtworkWithImage[]
+  data: ArtworkRecWithImageProps[]
   isLoading: boolean
 }
 
@@ -32,7 +32,12 @@ export const AdditionalItems: FC<AdditionalItemsProps> = ({ data, isLoading }) =
           {isLoading ? (
             <LoadingSpinner />
           ) : (
-            <Image background_url={el.image_url} onClick={() => handleClickImage(el.id)} />
+            <Image
+              background_url={el.image_url}
+              onClick={() => {
+                handleClickImage(el.id)
+              }}
+            />
           )}
           <WrapperContainer>
             <ItemTitle>{el.title}</ItemTitle>

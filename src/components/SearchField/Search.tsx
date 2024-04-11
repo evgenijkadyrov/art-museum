@@ -1,60 +1,55 @@
 import React from 'react'
 import { ErrorMessage, Formik } from 'formik'
 import * as Yup from 'yup'
+import { debounce } from 'lodash'
 import { ErrorStyled, FieldStyled, SearchFormContainer, StyledButton, StyledForm } from './styles'
-import { searchArtwork, SearchArtWork } from '@/api/api'
 import { SearchIcon } from '@/assets/SearchIcon'
 
 interface SearchArtworkProps {
-  searchResultsState: [
-    { data: SearchArtWork[]; totalSearchPage: number | null },
-    React.Dispatch<React.SetStateAction<{ data: SearchArtWork[]; totalSearchPage: number | null }>>,
-  ]
-  page: number
-  handlePageChange: (page: number) => void
+  setFilter: (filter: string) => void
+  setCurrentPage: (page: number) => void
 }
 
-export const SearchArtworkForm = ({
-  searchResultsState: [searchResults, setSearchResults],
-  page,
-  handlePageChange,
-}: SearchArtworkProps) => {
+export const SearchArtworkForm = ({ setFilter, setCurrentPage }: SearchArtworkProps) => {
   const validationSchema = Yup.object({
-    search: Yup.string().min(2, 'Minimum 2 symbols').required('Search term is required'),
+    search: Yup.string().max(15, 'Maximum 15 symbols'),
   })
-
-  const handleSearch = async (value: string): Promise<void> => {
-    handlePageChange(page)
-    try {
-      const res = await searchArtwork(value, page)
-      if (res) {
-        setSearchResults({ data: res.data, totalSearchPage: res.pagination.total_pages })
-      }
-    } catch (error) {
-      console.error('Error retrieving artwork:', error)
-      setSearchResults({ data: [], totalSearchPage: page })
-    }
-  }
+  const handleSearch = debounce((value: string) => {
+    setFilter(value)
+    setCurrentPage(1)
+  }, 600)
 
   return (
     <Formik
       initialValues={{ search: '' }}
       validationSchema={validationSchema}
-      onSubmit={async (values) => {
-        await handleSearch(values.search)
+      onSubmit={(values, { resetForm }) => {
+        setFilter(values.search)
+        resetForm()
       }}
     >
-      <StyledForm>
-        <SearchFormContainer>
-          <FieldStyled type="text" name="search" placeholder="Search artwork" />
-          <ErrorStyled>
-            <ErrorMessage name="search" component="div" className="error" />
-          </ErrorStyled>
-        </SearchFormContainer>
-        <StyledButton type="submit">
-          <SearchIcon />
-        </StyledButton>
-      </StyledForm>
+      {({ handleSubmit, values, handleChange }) => (
+        <StyledForm onSubmit={handleSubmit}>
+          <SearchFormContainer>
+            <FieldStyled
+              type="text"
+              name="search"
+              placeholder="Search artwork"
+              value={values.search}
+              onChange={(event) => {
+                handleChange(event)
+                handleSearch(event.target.value)
+              }}
+            />
+            <ErrorStyled>
+              <ErrorMessage name="search" component="div" className="error" />
+            </ErrorStyled>
+          </SearchFormContainer>
+          <StyledButton type="submit">
+            <SearchIcon />
+          </StyledButton>
+        </StyledForm>
+      )}
     </Formik>
   )
 }
