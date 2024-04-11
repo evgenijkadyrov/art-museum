@@ -1,30 +1,33 @@
-import { BookMark } from '@/assets/BookMark'
+import { BookMark } from '@/assets/icons/BookMark'
 import {
-  Favorites,
+  FavoritesIcon,
   ItemAuthor,
   ItemTitle,
   Status,
   WrapperContainer,
   WrapperItemInfo,
 } from '@components/MainItems/ItemsGalary/Item/ItemInfo/styles'
-import { ArtworkWithImage } from '@components/ContentHomePage'
-import { SearchArtWork } from '@/api/api'
+
+import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
+import { ArtworkByIdWithImage } from '@/types/interfaces'
+
 interface ItemInfoProps {
-  title: string
-  artist_title: string
+  data: ArtworkByIdWithImage
 }
-export const ItemInfo = ({ title, artist_title }: ItemInfoProps) => {
+
+export const ItemInfo = ({ data }: ItemInfoProps) => {
+  const { favorites, handleClickFavorite } = useToggleFavoriteArt()
   return (
     <WrapperItemInfo>
       <WrapperContainer>
-        <ItemTitle>{title}</ItemTitle>
-        <ItemAuthor> {artist_title}</ItemAuthor>
+        <ItemTitle>{data.title}</ItemTitle>
+        <ItemAuthor> {data.artist_title}</ItemAuthor>
         <Status>Public</Status>
       </WrapperContainer>
 
-      <Favorites>
-        <BookMark />
-      </Favorites>
+      <FavoritesIcon onClick={() => handleClickFavorite(data)}>
+        <BookMark isActive={favorites.some((favorite) => favorite.id === data.id)} />
+      </FavoritesIcon>
     </WrapperItemInfo>
   )
 }

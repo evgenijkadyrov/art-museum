@@ -1,9 +1,8 @@
-import { FC } from 'react'
-import { BookMark } from '@/assets/BookMark'
+import { BookMark } from '@/assets/icons/BookMark'
 import { useNavigate } from 'react-router-dom'
 import {
   AdditionalItem,
-  Favorites,
+  FavoritesIcon,
   Image,
   ItemAuthor,
   ItemTitle,
@@ -12,41 +11,40 @@ import {
   WrapperContainer,
 } from '@components/AdditionalItems/styles'
 import { LoadingSpinner } from '@components/Loader'
-import { ArtworkRecWithImageProps } from '@/hooks/useFetchRecommendedArtData'
+
+import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
+import { ArtworkByIdWithImage } from '@/types/interfaces'
 
 interface AdditionalItemsProps {
-  data: ArtworkRecWithImageProps[]
+  data: ArtworkByIdWithImage[]
   isLoading: boolean
+  isFavoritesPage: boolean
 }
 
-export const AdditionalItems: FC<AdditionalItemsProps> = ({ data, isLoading }) => {
+export const AdditionalItems = ({ data, isLoading, isFavoritesPage }: AdditionalItemsProps) => {
+  const { favorites, handleClickFavorite } = useToggleFavoriteArt()
   const navigate = useNavigate()
-  const handleClickImage = (id: number) => {
+  const handleClickImage = (id: number) => () => {
     navigate(`/${id}`)
   }
-
+  const dataToShow = isFavoritesPage ? favorites : data
   return (
     <WrapperAdditionalItems>
-      {data.map((el) => (
+      {dataToShow.map((el) => (
         <AdditionalItem key={el.id}>
           {isLoading ? (
             <LoadingSpinner />
           ) : (
-            <Image
-              background_url={el.image_url}
-              onClick={() => {
-                handleClickImage(el.id)
-              }}
-            />
+            <Image background_url={el.imageUrl} onClick={handleClickImage(el.id)} />
           )}
           <WrapperContainer>
             <ItemTitle>{el.title}</ItemTitle>
             <ItemAuthor>{el.artist_title}</ItemAuthor>
             <Status>Public</Status>
           </WrapperContainer>
-          <Favorites>
-            <BookMark />
-          </Favorites>
+          <FavoritesIcon onClick={() => handleClickFavorite(el)}>
+            <BookMark isActive={favorites.some((favorite) => favorite.id === el.id)} />
+          </FavoritesIcon>
         </AdditionalItem>
       ))}
     </WrapperAdditionalItems>

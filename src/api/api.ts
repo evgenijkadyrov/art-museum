@@ -1,14 +1,13 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { getRandomPageNumber } from '@/utils/createPageRandom'
+import { calcRandomPageNumber } from '@/utils/calcRandomPage.helper'
 import { ARTLIST_LIMIT, ART_RECOMMENDED_LIMIT_FOR_PAGE } from '@/constants/constants'
-import { ArtList } from '@components/ContentHomePage'
-import { Artwork, ArtworkById } from '@/api/interfaces'
+import { Artwork, ArtworkById } from '@/types/interfaces'
 
 export const instance: AxiosInstance = axios.create({
   baseURL: 'https://api.artic.edu/api/v1/',
 })
 
-export async function fetchArtLists(): Promise<ArtList[]> {
+export async function fetchArtLists(): Promise<Artwork[]> {
   try {
     const response: AxiosResponse = await instance.get('artworks', {
       params: {
@@ -29,7 +28,7 @@ export async function fetchRecommendedArtworks(): Promise<Artwork[]> {
   try {
     const response: AxiosResponse = await instance.get('artworks', {
       params: {
-        page: getRandomPageNumber(1, 500),
+        page: calcRandomPageNumber(1, 500),
         limit: ART_RECOMMENDED_LIMIT_FOR_PAGE,
         fields: 'id,title,artist_title,image_id',
       },
@@ -44,7 +43,7 @@ export async function fetchRecommendedArtworks(): Promise<Artwork[]> {
 
 export const fetchArtworkById = async (id: number): Promise<ArtworkById> => {
   try {
-    const response = await instance.get<Artwork>(`/artworks/${id}`, {
+    const response = await instance.get(`/artworks/${id}`, {
       params: {
         id,
         fields:

@@ -1,21 +1,21 @@
-import React from 'react'
 import { ErrorMessage, Formik } from 'formik'
 import * as Yup from 'yup'
 import { debounce } from 'lodash'
 import { ErrorStyled, FieldStyled, SearchFormContainer, StyledButton, StyledForm } from './styles'
-import { SearchIcon } from '@/assets/SearchIcon'
+import { SearchIcon } from '@/assets/icons/SearchIcon'
+import { ChangeEvent } from 'react'
 
 interface SearchArtworkProps {
-  setFilter: (filter: string) => void
+  setSearchValue: (value: string) => void
   setCurrentPage: (page: number) => void
 }
 
-export const SearchArtworkForm = ({ setFilter, setCurrentPage }: SearchArtworkProps) => {
+export const SearchArtworkForm = ({ setSearchValue, setCurrentPage }: SearchArtworkProps) => {
   const validationSchema = Yup.object({
     search: Yup.string().max(15, 'Maximum 15 symbols'),
   })
-  const handleSearch = debounce((value: string) => {
-    setFilter(value)
+  const handleSearchDebounce = debounce((value: string) => {
+    setSearchValue(value)
     setCurrentPage(1)
   }, 600)
 
@@ -24,7 +24,7 @@ export const SearchArtworkForm = ({ setFilter, setCurrentPage }: SearchArtworkPr
       initialValues={{ search: '' }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        setFilter(values.search)
+        setSearchValue(values.search)
         resetForm()
       }}
     >
@@ -36,9 +36,9 @@ export const SearchArtworkForm = ({ setFilter, setCurrentPage }: SearchArtworkPr
               name="search"
               placeholder="Search artwork"
               value={values.search}
-              onChange={(event) => {
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 handleChange(event)
-                handleSearch(event.target.value)
+                handleSearchDebounce(event.target.value)
               }}
             />
             <ErrorStyled>

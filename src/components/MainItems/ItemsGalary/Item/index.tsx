@@ -2,16 +2,15 @@ import { ItemInfo } from '@components/MainItems/ItemsGalary/Item/ItemInfo'
 import { Image, WrapperItem } from './styles'
 import { useNavigate } from 'react-router-dom'
 import { LoadingSpinner } from '@components/Loader'
-import { ArtworkWithImage } from '@components/ContentHomePage'
+import { ArtworkByIdWithImage } from '@/types/interfaces'
 
 interface ItemProps {
-  el: ArtworkWithImage
+  el: ArtworkByIdWithImage
   isLoading: boolean
 }
 
 export const Item = ({ el, isLoading }: ItemProps) => {
   const navigate = useNavigate()
-
   const handleClick = () => {
     navigate(`/${el.id}`)
   }
@@ -21,9 +20,9 @@ export const Item = ({ el, isLoading }: ItemProps) => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <Image background_url={el.image_url} onClick={handleClick} />
+        <Image background_url={el.imageUrl} onClick={handleClick} />
       )}
-      <ItemInfo artist_title={el.artist_title ?? ''} title={el.title ?? ''} />
+      <ItemInfo data={el} />
     </WrapperItem>
   )
 }
