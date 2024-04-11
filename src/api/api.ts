@@ -9,23 +9,34 @@ export interface Artwork {
   artist_title: string
   image_id: string
 }
-export interface ArtworkById {
-  id: number
-  title: string
+
+// export interface Pagination {
+//   total: number
+//   limit: number
+//   offset: number
+//   total_pages: number
+//   current_page: number
+// }
+
+export interface ArtworkById extends Artwork {
   date_start: number
   date_end: number
   place_of_origin: string
   dimensions: string | null
   credit_line: string
   copyright_notice: string | null
-  artist_title: string
-  image_id: string
+}
+
+export interface ArtResponse<T> {
+  pagination: Pagination
+  data: T[]
 }
 
 export const instance: AxiosInstance = axios.create({
   baseURL: 'https://api.artic.edu/api/v1/',
 })
-export async function fetchArtworks(currentPage: number): Promise<Artwork[]> {
+
+export async function fetchArtworks(currentPage: number): Promise<ArtResponse<Artwork>> {
   try {
     const response: AxiosResponse = await instance.get('artworks', {
       params: {
@@ -35,23 +46,24 @@ export async function fetchArtworks(currentPage: number): Promise<Artwork[]> {
       },
     })
 
-    return response.data.data
+    return response.data
   } catch (error) {
     console.error('Error retrieving artworks:', error)
     throw error
   }
 }
-export async function fetchPaginationInfo(): Promise<Pagination> {
-  try {
-    const response: AxiosResponse = await instance.get(
-      'artworks/search?query[term][is_public_domain]=true&limit=3'
-    )
-    return response.data.pagination
-  } catch (error) {
-    console.error('Error retrieving artworks:', error)
-    throw error
-  }
-}
+
+// export async function fetchPaginationInfo(): Promise<Pagination> {
+//   try {
+//     const response: AxiosResponse = await instance.get(
+//       'artworks/search?query[term][is_public_domain]=true&limit=3'
+//     )
+//     return response.data.pagination
+//   } catch (error) {
+//     console.error('Error retrieving artworks:', error)
+//     throw error
+//   }
+// }
 export async function fetchRecommendedArtworks(): Promise<Artwork[]> {
   try {
     const response: AxiosResponse = await instance.get('artworks', {
@@ -68,6 +80,7 @@ export async function fetchRecommendedArtworks(): Promise<Artwork[]> {
     throw error
   }
 }
+
 export const fetchArtworkById = async (id: number): Promise<ArtworkById> => {
   try {
     const response = await instance.get<Artwork>(
@@ -79,17 +92,24 @@ export const fetchArtworkById = async (id: number): Promise<ArtworkById> => {
     throw error
   }
 }
-export interface SearchArtWorkResponse {
+
+export interface SearchArtWork {
   _score: number
   title: string
   id: number
 }
-export const searchArtwork = async (value: string): Promise<SearchArtWorkResponse> => {
+
+export const searchArtwork = async (value: string, page): Promise<ArtResponse<SearchArtWork>> => {
   try {
-    const response = await instance.get<SearchArtWorkResponse>(
-      `/artworks/search?q=${value}&fields=title,id`
-    )
-    return response.data.data
+    const response: AxiosResponse = await instance.get('/artworks/search', {
+      params: {
+        page,
+        limit: ART_LIMIT_FOR_PAGE,
+        fields: 'id,title',
+        q: value,
+      },
+    })
+    return response.data
   } catch (error) {
     console.error('Error retrieving artwork:', error)
     throw error

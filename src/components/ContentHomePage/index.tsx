@@ -3,13 +3,12 @@ import { ItemsList } from '@components/MainItems/ItemsGalary'
 import { TitleGallery } from '@/common/TitleForGallery'
 import { AdditionalItems } from '@components/AdditionalItems'
 import { TitlePage } from '@/common/TitlePage'
-import { Artwork } from '@/api/api'
+import { Artwork, SearchArtWork } from '@/api/api'
 import { useFetchArtData } from '@/hooks/useFetchArtData'
 import { useFetchRecommendedArtData } from '@/hooks/useFetchRecommendedArtData'
 import { useState } from 'react'
 import { Pagination } from '@components/MainItems/Pagination'
 import { MAX_LENGTH_PAGINATION, PAGE_NUMBER_DEFAULT } from '@/constants/constants'
-import { useFetchPaginationInfo } from '@/hooks/useFetchPaginationInfo'
 import { SearchArtworkForm } from '@components/SearchField/Search'
 
 export interface ArtworkWithImage extends Artwork {
@@ -18,9 +17,18 @@ export interface ArtworkWithImage extends Artwork {
 
 export function Content() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE_NUMBER_DEFAULT)
-  const { artworks, isLoading } = useFetchArtData(currentPage)
+  const [searchResults, setSearchResults] = useState<{
+    data: SearchArtWork[]
+    totalSearchPage: number
+  }>({
+    data: [],
+    totalSearchPage: 0,
+  })
+  const { artworks, isLoading, totalPage } = useFetchArtData(
+    currentPage,
+    !!searchResults.data.length
+  )
   const { artworksRecommended } = useFetchRecommendedArtData()
-  const { totalPage } = useFetchPaginationInfo()
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage)
@@ -30,13 +38,21 @@ export function Content() {
     <Wrapper>
       <StyledContent>
         <TitlePage firstLine={'Lets Find Some '} secondLine={'Here!'} isActive />
-        <SearchArtworkForm />
+        <SearchArtworkForm
+          searchResultsState={[searchResults, setSearchResults]}
+          page={currentPage}
+          handlePageChange={handlePageChange}
+        />
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
 
-        <ItemsList data={artworks} isLoading={isLoading} />
+        <ItemsList
+          data={searchResults.data.length > 0 ? searchResults.data : artworks}
+          isLoading={isLoading}
+          isSearch={searchResults.data.length > 0}
+        />
         <Pagination
           currentPage={currentPage}
-          lastPage={totalPage}
+          lastPage={searchResults.data.length > 0 ? searchResults.totalSearchPage : totalPage}
           maxLength={MAX_LENGTH_PAGINATION}
           setCurrentPage={handlePageChange}
         />

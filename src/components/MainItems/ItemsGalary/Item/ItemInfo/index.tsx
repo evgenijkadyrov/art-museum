@@ -7,13 +7,18 @@ import {
   WrapperContainer,
   WrapperItemInfo,
 } from '@components/MainItems/ItemsGalary/Item/ItemInfo/styles'
-
-export const ItemInfo = ({ info }) => {
+import { ArtworkWithImage } from '@components/ContentHomePage'
+import { SearchArtWork } from '@/api/api'
+interface ItemInfoProps {
+  title: string
+  artist_title: string
+}
+export const ItemInfo = ({ title, artist_title }: ItemInfoProps) => {
   return (
     <WrapperItemInfo>
       <WrapperContainer>
-        <ItemTitle>{info.title}</ItemTitle>
-        <ItemAuthor> {info.artist_title}</ItemAuthor>
+        <ItemTitle>{title}</ItemTitle>
+        <ItemAuthor> {artist_title}</ItemAuthor>
         <Status>Public</Status>
       </WrapperContainer>
 
