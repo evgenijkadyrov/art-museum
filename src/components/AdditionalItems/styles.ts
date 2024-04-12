@@ -21,7 +21,7 @@ export const WrapperContainer = styled.div`
   align-items: flex-start;
 `
 export const ItemTitle = styled.div`
-  font-size: 17.5px;
+  font-size: 1rem;
   width: 250px;
   color: ${colors.primary};
   font-weight: 500;
@@ -58,17 +58,35 @@ export const Image = styled.div<ImageProps>`
 `
 
 export const AdditionalItem = styled.div`
-  display: grid;
+  //display: grid;
+  //grid-template-columns: 1fr 2fr 1fr;
+  //align-items: center;
+  //gap: 10px;
+  display: flex;
 
-  grid-template-columns: 1fr 2fr 1fr;
-  align-items: center;
-  gap: 10px;
   background-color: ${colors.white};
+
+  @media (max-width: 1280px) {
+    grid-template-columns: 1fr;
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `
+
 export const WrapperAdditionalItems = styled.div`
   display: grid;
   margin-bottom: 60px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
+  width: 70%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    width: 100%;
+  }
 `

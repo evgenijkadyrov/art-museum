@@ -3,12 +3,15 @@ import { colors } from '@/constants/colors'
 
 export const Wrapper = styled.div`
   background-color: ${colors.background};
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex: 1;
 `
 export const StyledContent = styled.main`
   display: flex;
-  flex: 1;
   flex-direction: column;
-  justify-content: center;
-  width: 1280px;
+  //justify-content: center;
+  width: 70%;
   margin: 0 auto;
 `

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-
+export const WIDTH_DISPLAY = '1280'
 export default createGlobalStyle`
   * {
     margin: 0;
@@ -11,14 +11,19 @@ export default createGlobalStyle`
 
   html, body {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     font-family: Lexend Deca ,serif;
+    
   }
+  @media (max-width: 790px) {
+    body,html {
+      font-size: 12px;
+    }
 
-  body {
-    & > #root {
-      width: 100%;
-      height: 100%;
+    .container {
+      padding: 10px;
     }
   }
+  
+  
   `

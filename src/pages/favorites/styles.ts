@@ -8,6 +8,9 @@ export const Wrapper = styled.div`
   flex: 1;
 `
 export const Content = styled.main`
-  width: 1280px;
+  width: 70%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
