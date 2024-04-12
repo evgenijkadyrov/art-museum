@@ -156,7 +156,6 @@ Error generating stack: `+u.message+`
   background-image: url(${({background_url:e})=>e});
   background-position: center;
   background-size: cover;
-  object-fit: fill;
   cursor: pointer;
 `,mN=re.div`
   display: flex;
@@ -289,10 +288,9 @@ Error generating stack: `+u.message+`
 `,UN=re.div`
   width: 80px;
   height: 80px;
-  background-image: url(${({background_url:e})=>e});
+  background-image: url(${e=>e.background_url});
   background-position: center;
   background-size: cover;
-  object-fit: fill;
   cursor: pointer;
 `,zN=re.div`
   display: grid;
@@ -520,8 +518,7 @@ function print() { __p += __j.call(arguments, '') }
   margin-right: 80px;
   background-image: url(${({background_url:e})=>e});
   background-position: center;
-  background-size: cover;
-  object-fit: fill;
+  background-size: contain;
 `,LU=re.div`
   padding-top: 120px;
   padding-bottom: 120px;
