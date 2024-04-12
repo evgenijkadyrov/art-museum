@@ -3,7 +3,7 @@ import { colors } from '@/constants/colors'
 
 export const Wrapper = styled.div`
   width: 100%;
-  background-color: ${colors.primary};
+  background-color: ${colors.background};
   display: flex;
   flex: 1;
 `

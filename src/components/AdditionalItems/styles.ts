@@ -63,7 +63,7 @@ export const AdditionalItem = styled.div`
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   gap: 10px;
-  background-color: ${colors.background};
+  background-color: ${colors.white};
 `
 export const WrapperAdditionalItems = styled.div`
   display: grid;
