@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { colors } from '@/constants/colors'
+import { ReactNode } from 'react'
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -30,7 +32,7 @@ export const MuseumName = styled.div`
   span {
     margin-left: 5px;
     font-weight: bold;
-    color: #e0a449;
+    color: ${colors.gold};
   }
 `
 export const Navigation = styled.nav`
@@ -40,7 +42,34 @@ export const Navigation = styled.nav`
   align-items: center;
   align-content: end;
 `
-export const StyledLink = styled(Link)`
+
+interface StyledLinkProps {
+  color?: string
+  children: ReactNode
+  to: string
+}
+
+export const StyledLink = styled(Link)<StyledLinkProps>`
   text-decoration: none;
-  color: white;
+  color: ${({ color }) => color};
+`
+export const WrapperLink = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`
+
+export const StyledBurgerLink = styled(Link)<StyledLinkProps>`
+  text-decoration: none;
+  color: ${({ color }) => color};
+  font-size: 36px;
+  margin-bottom: 40px;
+`
+export const CloseIconContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`
+export const LogoMuseumContainer = styled.div`
+  cursor: pointer;
 `

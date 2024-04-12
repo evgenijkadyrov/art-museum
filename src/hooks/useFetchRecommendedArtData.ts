@@ -23,10 +23,9 @@ export const useFetchRecommendedArtData = (): useFetchRecommendedArtDataProps =>
           } as ArtworkByIdWithImage
         })
         setArtworksRecommended(artworksWithImages)
+        setIsLoading(false)
       } catch (error) {
         console.error('Error retrieving artworks:', error)
-      } finally {
-        setIsLoading(false)
       }
     }
 
