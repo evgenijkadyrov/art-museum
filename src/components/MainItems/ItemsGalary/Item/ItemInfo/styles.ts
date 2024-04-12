@@ -51,9 +51,9 @@ export const WrapperItemInfo = styled.div`
   display: flex;
   height: 132px;
   justify-content: space-around;
-  background-color: ${colors.background};
+  background-color: ${colors.white};
   width: 90%;
-  margin-left: 5px;
+  margin-left: 10px;
   padding: 12px 24px;
   position: absolute;
   bottom: -70px;
