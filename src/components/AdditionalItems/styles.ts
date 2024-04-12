@@ -49,9 +49,10 @@ interface ImageProps {
 export const Image = styled.div<ImageProps>`
   width: 80px;
   height: 80px;
-  background-image: url(${(props) => props.background_url});
+  background-image: url(${({ background_url }) => background_url});
   background-position: center;
   background-size: cover;
+  object-fit: fill;
   cursor: pointer;
 `
 
