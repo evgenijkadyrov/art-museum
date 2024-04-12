@@ -1,4 +1,4 @@
-export const LogoMuseum = ({ height, width }) => {
+export const LogoMuseum = ({ height, width }: { height: number; width: number }) => {
   return (
     <svg
       width={width}

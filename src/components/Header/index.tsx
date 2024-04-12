@@ -1,19 +1,22 @@
-import { Container, Logo, MuseumName, Navigation, StyledHeader } from './styles'
-import { LogoMuseum } from '@/assets/LogoMuseum'
+import { Container, Logo, MuseumName, Navigation, StyledHeader, StyledLink } from './styles'
+import { LogoMuseum } from '@/assets/icons/LogoMuseum'
 
-export function Header() {
-  return (
-    <StyledHeader>
-      <Container>
-        <Logo>
-          <LogoMuseum height={50} width={45} />
-          <MuseumName color="white">
-            Museum of
-            <span>Art</span>
-          </MuseumName>
-        </Logo>
-        <Navigation>Your favorites</Navigation>
-      </Container>
-    </StyledHeader>
-  )
-}
+export const Header = () => (
+  <StyledHeader>
+    <Container>
+      <Logo>
+        <LogoMuseum height={50} width={45} />
+        <MuseumName color="white">
+          Museum of
+          <span>Art</span>
+        </MuseumName>
+      </Logo>
+
+      <Navigation>
+        <StyledLink to={'/'}>Home</StyledLink>
+        <StyledLink to={'/favorites'}>Your favorites</StyledLink>
+        <StyledLink to={'/info'}>Info</StyledLink>
+      </Navigation>
+    </Container>
+  </StyledHeader>
+)

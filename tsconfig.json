@@ -6,7 +6,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@assets": ["src/assets"]
+      "@assets": ["src/assets"],
+      "@common": ["src/common"],
     },
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
@@ -25,8 +26,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true
   },
-  "include": [".eslintrc.cjs", "src"],
+  "include": [".eslintrc.cjs", "src",
+    "index.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
