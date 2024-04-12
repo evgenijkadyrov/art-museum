@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { HTMLAttributes } from 'react'
+import { colors } from '@/constants/colors'
 
 export const WrapperPagination = styled.div`
   display: flex;
@@ -10,7 +11,7 @@ export const WrapperPagination = styled.div`
 export const PageLink = styled.div<HTMLAttributes<HTMLDivElement> & { active?: boolean }>`
   margin: 0.5rem;
   padding: 0.25rem 0.5rem;
-  color: ${({ active }) => (active ? '#FFFFFF' : '#393939')};
-  background-color: ${({ active }) => (active ? 'rgb(241, 121, 0)' : '#F0F1F1')};
+  color: ${({ active }) => (active ? `${colors.white}` : `${colors.primary}`)};
+  background-color: ${({ active }) => (active ? `${colors.secondary}` : `${colors.background}`)};
   cursor: pointer;
 `

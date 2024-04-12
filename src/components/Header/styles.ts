@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { colors } from '@/constants/colors'
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -30,7 +31,7 @@ export const MuseumName = styled.div`
   span {
     margin-left: 5px;
     font-weight: bold;
-    color: #e0a449;
+    color: ${colors.gold};
   }
 `
 export const Navigation = styled.nav`
@@ -42,5 +43,5 @@ export const Navigation = styled.nav`
 `
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: ${colors.white};
 `

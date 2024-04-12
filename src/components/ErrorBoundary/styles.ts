@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '@/constants/colors'
 
 export const ErrorWrapper = styled.div`
   display: flex;
@@ -10,5 +11,5 @@ export const ErrorWrapper = styled.div`
 
 export const Heading = styled.h4`
   font-size: 24px;
-  color: white;
+  color: ${colors.white};
 `

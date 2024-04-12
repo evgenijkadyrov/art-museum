@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import { colors } from '@/constants/colors'
 
 export const Wrapper = styled.div`
-  background-color: #f5f5f5;
+  background-color: ${colors.background};
 `
 export const StyledContent = styled.main`
   display: flex;

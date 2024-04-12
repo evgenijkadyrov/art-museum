@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '@/constants/colors'
 
 export const FavoritesIcon = styled.button`
   display: flex;
@@ -6,7 +7,7 @@ export const FavoritesIcon = styled.button`
   justify-content: center;
   width: 59px;
   height: 59px;
-  background-color: rgb(249, 249, 249);
+  background-color: ${colors.background};
   border-radius: 50%;
   margin-right: 10px;
 
@@ -22,7 +23,7 @@ export const WrapperContainer = styled.div`
 export const ItemTitle = styled.div`
   font-size: 17.5px;
   width: 250px;
-  color: rgb(57, 57, 57);
+  color: ${colors.primary};
   font-weight: 500;
   margin-bottom: 5px;
   white-space: nowrap;
@@ -32,7 +33,7 @@ export const ItemTitle = styled.div`
 export const Status = styled.div`
   font-size: 15px;
   height: 26px;
-  color: rgb(57, 57, 57);
+  color: ${colors.primary};
   font-weight: 700;
   margin-top: 10px;
 `
@@ -40,7 +41,7 @@ export const Status = styled.div`
 export const ItemAuthor = styled.div`
   font-size: 15px;
   height: 26px;
-  color: rgb(224, 164, 73);
+  color: ${colors.gold};
   font-weight: 500;
 `
 interface ImageProps {
@@ -62,7 +63,7 @@ export const AdditionalItem = styled.div`
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   gap: 10px;
-  background-color: rgb(240, 241, 241);
+  background-color: ${colors.background};
 `
 export const WrapperAdditionalItems = styled.div`
   display: grid;

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '@/constants/colors'
 
 export const TextWrapper = styled.div`
   display: flex;
@@ -8,17 +9,17 @@ export const TextWrapper = styled.div`
   align-items: center;
   font-size: 64px;
   font-weight: bold;
-  color: rgb(57, 57, 57);
+  color: ${colors.primary};
 `
 
 export const FirstLine = styled.span`
   &.active::after {
     content: 'Art';
-    color: #f17900;
+    color: ${colors.secondary};
   }
 `
 export const SecondLine = styled.span`
   &.active {
-    color: #f17900;
+    color: ${colors.secondary};
   }
 `

@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+import { colors } from '@/constants/colors'
 
 export const StyledFooter = styled.footer`
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: ${colors.white};
   margin-top: auto;
 `
 export const Container = styled.div`
