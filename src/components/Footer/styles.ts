@@ -18,6 +18,6 @@ export const Container = styled.div`
   height: 127px;
 `
 export const Modsen = styled.img`
-  width: ${WIDTH_DISPLAY * 0.13}px;
+  width: ${WIDTH_DISPLAY} * 0.13px;
   height: ${WIDTH_DISPLAY}*0.05px;
 `

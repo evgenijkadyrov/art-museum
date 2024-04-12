@@ -10,8 +10,8 @@ export const WrapperTitleGallery = styled.div`
 `
 export const FirstLineText = styled.div`
   color: ${colors.gold};
-  font-size: 16px;
+  font-size: 1rem;
 `
 export const SecondLineText = styled.div`
-  font-size: 32px;
+  font-size: 2rem;
 `

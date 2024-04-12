@@ -16,6 +16,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 490px) {
+    width: 85%;
+  }
 `
 export const Logo = styled.div`
   display: flex;
@@ -35,14 +38,20 @@ export const MuseumName = styled.div`
     font-weight: bold;
     color: ${colors.gold};
   }
+
+  @media (max-width: 390px) {
+    font-size: 0.75rem;
+  }
 `
 export const Navigation = styled.nav`
   display: flex;
   margin-top: 30px;
-  margin-right: 20px;
   gap: 2rem;
   align-items: center;
   align-content: end;
+  @media (max-width: 390px) {
+    margin-right: 5px;
+  }
 `
 
 interface StyledLinkProps {
@@ -55,6 +64,10 @@ export const StyledLink = styled(Link)<StyledLinkProps>`
   text-decoration: none;
   font-size: 1.25rem;
   color: ${({ color }) => color};
+  @media (max-width: 390px) {
+    font-size: 1rem;
+    display: none;
+  }
 `
 export const WrapperLink = styled.div`
   display: flex;

@@ -13,6 +13,9 @@ export const Image = styled.div<ImageProps>`
   background-size: cover;
   object-fit: fill;
   cursor: pointer;
+  //@media ( max-width: 390px ) {
+  //  width: 262px;
+  //}
 `
 export const WrapperItem = styled.div`
   display: flex;
@@ -21,4 +24,15 @@ export const WrapperItem = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
+  @media (max-width: 390px) {
+    height: 180px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    margin-bottom: 80px;
+    height: 250px;
+  }
+  @media (min-width: 769px) and (max-width: 1280px) {
+    margin-bottom: 80px;
+    height: 320px;
+  }
 `
