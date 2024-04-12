@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '@/constants/colors'
+import { WIDTH_DISPLAY } from '@/globalStyles'
 
 export const StyledFooter = styled.footer`
   display: flex;
@@ -9,7 +10,7 @@ export const StyledFooter = styled.footer`
   margin-top: auto;
 `
 export const Container = styled.div`
-  width: 1280px;
+  width: 70%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -17,6 +18,6 @@ export const Container = styled.div`
   height: 127px;
 `
 export const Modsen = styled.img`
-  width: 164px;
-  height: 59px;
+  width: ${WIDTH_DISPLAY} * 0.13px;
+  height: ${WIDTH_DISPLAY}*0.05px;
 `

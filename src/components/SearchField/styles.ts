@@ -8,6 +8,9 @@ export const SearchFormContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 80px;
+  @media (max-width: 390px) {
+    margin-bottom: 10px;
+  }
 `
 export const StyledForm = styled(Form)`
   display: flex;
@@ -15,6 +18,15 @@ export const StyledForm = styled(Form)`
   align-items: flex-start;
   position: relative;
   margin-bottom: 80px;
+  @media (max-width: 390px) {
+    margin-bottom: 10px;
+  }
+  @media (min-width: 391px) and (max-width: 768px) {
+    margin-bottom: 10px;
+  }
+  @media (min-width: 769px) {
+    margin-bottom: 10px;
+  }
 `
 export const StyledButton = styled.button`
   position: relative;
@@ -34,4 +46,10 @@ export const FieldStyled = styled(Field)`
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  @media (max-width: 390px) {
+    width: 252px;
+  }
+  @media (max-width: 600px) {
+    width: 342px;
+  }
 `
