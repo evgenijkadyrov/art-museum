@@ -11,6 +11,7 @@ export const Image = styled.div<ImageProps>`
   background-image: url(${({ background_url }) => background_url});
   background-position: center;
   background-size: cover;
+  object-fit: fill;
   cursor: pointer;
 `
 export const WrapperItem = styled.div`
