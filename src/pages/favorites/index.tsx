@@ -13,11 +13,7 @@ export const FavoritesPage = () => {
       <Wrapper>
         <Content>
           <TitlePage firstLine={'Here re Yours'} secondLine={'Favorites'} isColored={true} />
-          <TitleGallery
-            firstLineText={'Saved by you'}
-            secondLineText={'Your favorites list'}
-            // color={'red'}
-          />
+          <TitleGallery firstLineText={'Saved by you'} secondLineText={'Your favorites list'} />
           <AdditionalItems isLoading={false} data={favorites} isFavoritesPage />
         </Content>
       </Wrapper>
