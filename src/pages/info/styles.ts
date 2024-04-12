@@ -45,8 +45,7 @@ export const Image = styled.div<{ background_url: string | undefined }>`
   margin-right: 80px;
   background-image: url(${(props) => props.background_url});
   background-position: center;
-  background-size: cover;
-  object-fit: fill;
+  background-size: contain;
 `
 export const WrapperContent = styled.div`
   padding-top: 120px;
