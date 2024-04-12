@@ -40,15 +40,13 @@ export const Header = () => {
             </WrapperLink>
           </BurgerMenu>
           <LogoMuseumContainer onClick={() => setOpen(true)}>
-            <LogoMuseum height={50} width={45} />
+            <LogoMuseum height={45} width={40} />
           </LogoMuseumContainer>
-
           <MuseumName color="white" onClick={() => setOpen(true)}>
             Museum of
             <span>Art</span>
           </MuseumName>
         </Logo>
-
         <Navigation>
           <StyledLink to={'/'} color={colors.white}>
             Home
