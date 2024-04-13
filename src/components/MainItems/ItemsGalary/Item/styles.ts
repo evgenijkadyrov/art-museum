@@ -11,8 +11,8 @@ export const Image = styled.div<ImageProps>`
   background-image: url(${({ background_url }) => background_url});
   background-position: center;
   background-size: cover;
-  object-fit: fill;
   cursor: pointer;
+  background-repeat: no-repeat;
   //@media ( max-width: 390px ) {
   //  width: 262px;
   //}
