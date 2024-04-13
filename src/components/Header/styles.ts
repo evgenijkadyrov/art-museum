@@ -7,7 +7,7 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 127px;
+  height: 85px;
   background-color: rgb(54, 53, 53);
 `
 export const Container = styled.div`
@@ -24,7 +24,7 @@ export const Logo = styled.div`
   display: flex;
   align-items: center;
   max-width: 206px;
-  max-height: 63px;
+  max-height: 127px;
   padding: 5px;
 `
 export const MuseumName = styled.div`
@@ -32,6 +32,7 @@ export const MuseumName = styled.div`
   display: flex;
   align-self: end;
   padding: 5px;
+  cursor: pointer;
 
   span {
     margin-left: 5px;

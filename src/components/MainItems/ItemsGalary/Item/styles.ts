@@ -12,6 +12,7 @@ export const Image = styled.div<ImageProps>`
   background-position: center;
   background-size: cover;
   cursor: pointer;
+  background-repeat: no-repeat;
   //@media ( max-width: 390px ) {
   //  width: 262px;
   //}
