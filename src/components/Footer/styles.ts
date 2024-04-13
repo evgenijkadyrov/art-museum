@@ -14,10 +14,19 @@ export const Container = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 127px;
+  align-items: end;
+  height: 85px;
+  @media (max-width: 390px) {
+    height: 70px;
+    width: 85%;
+  }
 `
 export const Modsen = styled.img`
   width: ${WIDTH_DISPLAY} * 0.13px;
   height: ${WIDTH_DISPLAY}*0.05px;
+
+  @media (max-width: 390px) {
+    width: 80px;
+    height: 30px;
+  }
 `

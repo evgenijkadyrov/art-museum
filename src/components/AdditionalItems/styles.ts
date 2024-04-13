@@ -58,9 +58,10 @@ interface ImageProps {
 export const Image = styled.div<ImageProps>`
   width: 80px;
   height: 80px;
-  background-image: url(${(props) => props.background_url});
+  background-image: url(${({ background_url }) => background_url});
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   cursor: pointer;
   @media (max-width: 390px) {
     width: 40px;
@@ -99,5 +100,12 @@ export const WrapperAdditionalItems = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  @media (min-width: 769px) and (max-width: 1280px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 `

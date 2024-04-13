@@ -42,14 +42,16 @@ export const ErrorStyled = styled.div`
 `
 
 export const FieldStyled = styled(Field)`
-  width: 562px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   @media (max-width: 390px) {
-    width: 252px;
+    width: 200px;
   }
-  @media (max-width: 600px) {
+  @media (min-width: 391px) and (max-width: 768px) {
     width: 342px;
+  }
+  @media (min-width: 769px) {
+    width: 542px;
   }
 `
