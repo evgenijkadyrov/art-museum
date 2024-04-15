@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { HTMLAttributes } from 'react'
-import { colors } from '@/constants/colors'
 
 export const WrapperPagination = styled.div`
   display: flex;
@@ -19,5 +18,4 @@ export const PageLink = styled.div<
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'true')};
-
 `
