@@ -17,9 +17,10 @@ export const useToggleFavoriteArt = (): UseToggleFavoriteArtProps => {
     imageUrl,
   }: ArtworkByIdWithImage) => {
     const updatedFavorites = [...favorites]
-    const index = updatedFavorites.findIndex((favorite) => favorite.id === id)
-    if (index !== -1) {
-      updatedFavorites.splice(index, 1)
+    const existingFavoriteIndex = updatedFavorites.findIndex((favorite) => favorite.id === id)
+
+    if (existingFavoriteIndex !== -1) {
+      updatedFavorites.splice(existingFavoriteIndex, 1)
     } else {
       const newFavorite = {
         id,
