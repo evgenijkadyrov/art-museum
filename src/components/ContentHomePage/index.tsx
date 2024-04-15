@@ -13,10 +13,11 @@ import { getItemsPerPageHelper } from '@/utils/getItemsPerPage.helper'
 import { useFilteredArtList } from '@/hooks/useFiltredArtList'
 import { useFetchArtList } from '@/hooks/useFetchArtList'
 import { useHandlePagination } from '@/hooks/useHandlePagination'
+import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
 
 export const Content = () => {
   const [searchValue, setSearchValue] = useState('')
-
+  const { favorites, handleClickFavorite } = useToggleFavoriteArt()
   const { currentPage, setCurrentPage, handlePageChange } = useHandlePagination()
   const { artList, isLoading } = useFetchArtList()
   const { artworksRecommended } = useFetchRecommendedArtData()
@@ -31,7 +32,12 @@ export const Content = () => {
         <TitlePage firstLine={'Lets Find Some '} secondLine={'Here!'} isActive={true} />
         <SearchArtworkForm setSearchValue={setSearchValue} setCurrentPage={setCurrentPage} />
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
-        <ItemsList data={searchValue ? currentItemsFilter : currentItems} isLoading={isLoading} />
+        <ItemsList
+          data={searchValue ? currentItemsFilter : currentItems}
+          isLoading={isLoading}
+          favorites={favorites}
+          handleClickFavorite={handleClickFavorite}
+        />
         <Pagination
           currentPage={currentPage}
           lastPage={totalPageNumber(
@@ -42,7 +48,13 @@ export const Content = () => {
           setCurrentPage={handlePageChange}
         />
         <TitleGallery firstLineText={'Here some more'} secondLineText={'Other works for you'} />
-        <AdditionalItems data={artworksRecommended} isLoading={isLoading} isFavoritesPage={false} />
+        <AdditionalItems
+          data={artworksRecommended}
+          isLoading={isLoading}
+          isFavoritesPage={false}
+          favorites={favorites}
+          handleClickFavorite={handleClickFavorite}
+        />
       </StyledContent>
     </Wrapper>
   )
