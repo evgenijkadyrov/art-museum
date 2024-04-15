@@ -7,9 +7,11 @@ import { ArtworkByIdWithImage } from '@/types/interfaces'
 interface ItemProps {
   el: ArtworkByIdWithImage
   isLoading: boolean
+  favorites: ArtworkByIdWithImage[]
+  handleClickFavorite: (el: ArtworkByIdWithImage) => void
 }
 
-export const Item = ({ el, isLoading }: ItemProps) => {
+export const Item = ({ el, isLoading, favorites, handleClickFavorite }: ItemProps) => {
   const navigate = useNavigate()
   const handleClick = () => {
     navigate(`/${el.id}`)
@@ -22,7 +24,7 @@ export const Item = ({ el, isLoading }: ItemProps) => {
       ) : (
         <Image background_url={el.imageUrl} onClick={handleClick} />
       )}
-      <ItemInfo data={el} />
+      <ItemInfo data={el} favorites={favorites} handleClickFavorite={handleClickFavorite} />
     </WrapperItem>
   )
 }

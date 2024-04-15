@@ -8,15 +8,15 @@ import {
   WrapperItemInfo,
 } from '@components/MainItems/ItemsGalary/Item/ItemInfo/styles'
 
-import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
 import { ArtworkByIdWithImage } from '@/types/interfaces'
 
 interface ItemInfoProps {
   data: ArtworkByIdWithImage
+  favorites: ArtworkByIdWithImage[]
+  handleClickFavorite: (el: ArtworkByIdWithImage) => void
 }
 
-export const ItemInfo = ({ data }: ItemInfoProps) => {
-  const { favorites, handleClickFavorite } = useToggleFavoriteArt()
+export const ItemInfo = ({ data, favorites, handleClickFavorite }: ItemInfoProps) => {
   return (
     <WrapperItemInfo>
       <WrapperContainer>

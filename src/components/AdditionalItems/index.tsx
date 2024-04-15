@@ -12,17 +12,23 @@ import {
 } from '@components/AdditionalItems/styles'
 import { LoadingSpinner } from '@components/Loader'
 
-import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
 import { ArtworkByIdWithImage } from '@/types/interfaces'
 
 interface AdditionalItemsProps {
   data: ArtworkByIdWithImage[]
   isLoading: boolean
   isFavoritesPage: boolean
+  favorites: ArtworkByIdWithImage[]
+  handleClickFavorite: (el: ArtworkByIdWithImage) => void
 }
 
-export const AdditionalItems = ({ data, isLoading, isFavoritesPage }: AdditionalItemsProps) => {
-  const { favorites, handleClickFavorite } = useToggleFavoriteArt()
+export const AdditionalItems = ({
+  data,
+  isLoading,
+  isFavoritesPage,
+  handleClickFavorite,
+  favorites,
+}: AdditionalItemsProps) => {
   const navigate = useNavigate()
   const handleClickImage = (id: number) => () => {
     navigate(`/${id}`)
@@ -30,7 +36,7 @@ export const AdditionalItems = ({ data, isLoading, isFavoritesPage }: Additional
   const dataToShow = isFavoritesPage ? favorites : data
   return (
     <WrapperAdditionalItems>
-      {dataToShow.map((el) => (
+      {dataToShow?.map((el) => (
         <AdditionalItem key={el.id}>
           {isLoading ? (
             <LoadingSpinner />
@@ -43,7 +49,7 @@ export const AdditionalItems = ({ data, isLoading, isFavoritesPage }: Additional
             <Status>Public</Status>
           </WrapperContainer>
           <FavoritesIcon onClick={() => handleClickFavorite(el)}>
-            <BookMark isActive={favorites.some((favorite) => favorite.id === el.id)} />
+            <BookMark isActive={favorites?.some((favorite) => favorite.id === el.id)} />
           </FavoritesIcon>
         </AdditionalItem>
       ))}
