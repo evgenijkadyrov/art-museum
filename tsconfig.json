@@ -4,15 +4,26 @@
     "useDefineForClassFields": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@assets": ["src/assets"],
-      "@common": ["src/common"],
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@assets": [
+        "src/assets"
+      ],
+      "@common": [
+        "src/common"
+      ]
     },
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
-
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -20,7 +31,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -29,8 +39,15 @@
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true
   },
-  "include": [".eslintrc.cjs", "src",
-    "index.d.ts"
+  "include": [
+    ".eslintrc.cjs",
+    "src",
+    "index.d.ts",
+    "src/setupTests.ts"
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
