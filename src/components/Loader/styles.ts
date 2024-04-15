@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '@/constants/colors'
 
 export const Container = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ export const Container = styled.div`
 export const Loader = styled.div`
   border-width: 0.5rem;
   border-style: solid;
-  border-color: #f17900 #f17900 #f17900 #f17900;
+  border-color: ${colors.secondary} ${colors.secondary} ${colors.secondary} ${colors.secondary};
   width: 3.625rem;
   height: 3.625rem;
   border-radius: 50%;

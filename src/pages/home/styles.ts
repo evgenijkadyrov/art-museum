@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
 export const HomeStyled = styled.div`
-  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `
