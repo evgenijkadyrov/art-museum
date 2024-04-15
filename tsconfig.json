@@ -30,7 +30,7 @@
     "strictNullChecks": true
   },
   "include": [".eslintrc.cjs", "src",
-    "index.d.ts"
+    "index.d.ts","setupTest.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
