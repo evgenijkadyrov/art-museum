@@ -6,7 +6,7 @@ import { Layout } from '@/common/Layout/Layout'
 import { Content, Wrapper } from './styles'
 
 export const FavoritesPage = () => {
-  const { favorites } = useToggleFavoriteArt()
+  const { favorites, handleClickFavorite } = useToggleFavoriteArt()
 
   return (
     <Layout>
@@ -14,7 +14,13 @@ export const FavoritesPage = () => {
         <Content>
           <TitlePage firstLine={'Here re Yours'} secondLine={'Favorites'} isColored={true} />
           <TitleGallery firstLineText={'Saved by you'} secondLineText={'Your favorites list'} />
-          <AdditionalItems isLoading={false} data={favorites} isFavoritesPage />
+          <AdditionalItems
+            isLoading={false}
+            data={favorites}
+            favorites={favorites}
+            handleClickFavorite={handleClickFavorite}
+            isFavoritesPage
+          />
         </Content>
       </Wrapper>
     </Layout>

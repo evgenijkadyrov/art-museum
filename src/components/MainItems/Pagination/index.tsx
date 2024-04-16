@@ -18,28 +18,21 @@ export const Pagination = ({
 
   return (
     <WrapperPagination aria-label="Pagination">
-      {currentPage !== 1 && (
-        <PageLink
-          // disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
-        </PageLink>
-      )}
+      <PageLink disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
+        Previous
+      </PageLink>
+
       {pageNums.map((pageNum, idx) => (
         <PageLink
           key={idx}
           active={currentPage === pageNum}
-          // disabled={isNaN(pageNum)}
+          disabled={isNaN(pageNum)}
           onClick={() => setCurrentPage(pageNum)}
         >
           {!isNaN(pageNum) ? pageNum : '...'}
         </PageLink>
       ))}
-      <PageLink
-        // disabled={currentPage === lastPage}
-        onClick={() => setCurrentPage(currentPage + 1)}
-      >
+      <PageLink disabled={currentPage === lastPage} onClick={() => setCurrentPage(currentPage + 1)}>
         Next
       </PageLink>
     </WrapperPagination>
