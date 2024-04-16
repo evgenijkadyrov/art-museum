@@ -14,7 +14,7 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d dist",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest --coverage"
   },
   "husky": {
     "hooks": {
@@ -42,6 +42,8 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^15.0.2",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.12.4",
     "@types/react": "^18.2.66",
@@ -49,7 +51,8 @@
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/expect": "^1.5.0",
+    "@vitest/coverage-v8": "^1.5.0",
+    "c8": "^9.1.0",
     "classnames": "^2.5.1",
     "eslint": "8.56.0",
     "eslint-config-prettier": "^9.1.0",
