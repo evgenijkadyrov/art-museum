@@ -1,13 +1,13 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import { calcRandomPageNumber } from '@/utils/calcRandomPage.helper'
 import { ARTLIST_LIMIT, ART_RECOMMENDED_LIMIT_FOR_PAGE } from '@/constants/constants'
-import { Artwork, ArtworkById } from '@/types/interfaces'
+import { Artwork, ArtworkById, ArtworkSearch } from '@/types/interfaces'
 
 export const instance: AxiosInstance = axios.create({
   baseURL: 'https://api.artic.edu/api/v1/',
 })
 
-export async function fetchArtLists(): Promise<Artwork[]> {
+export const fetchArtLists = async (): Promise<Artwork[]> => {
   try {
     const response: AxiosResponse = await instance.get('artworks', {
       params: {
@@ -24,7 +24,7 @@ export async function fetchArtLists(): Promise<Artwork[]> {
   }
 }
 
-export async function fetchRecommendedArtworks(): Promise<Artwork[]> {
+export const fetchRecommendedArtworks = async (): Promise<Artwork[]> => {
   try {
     const response: AxiosResponse = await instance.get('artworks', {
       params: {
@@ -53,6 +53,31 @@ export const fetchArtworkById = async (id: number): Promise<ArtworkById> => {
     return response.data.data
   } catch (error) {
     console.error('Error retrieving artwork:', error)
+    throw error
+  }
+}
+export const searchArtworks = async (
+  searchValue: string,
+  currentPage: number
+): Promise<ArtworkSearch> => {
+  try {
+    const response: AxiosResponse = await instance.get('artworks/search', {
+      params: {
+        q: searchValue,
+        query: {
+          term: {
+            is_public_domain: true,
+          },
+        },
+        limit: 3,
+        page: currentPage,
+        fields: 'id,title,api_link',
+      },
+    })
+
+    return response.data
+  } catch (error) {
+    console.error('Error retrieving artworks:', error)
     throw error
   }
 }

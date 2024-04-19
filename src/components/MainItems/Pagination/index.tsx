@@ -2,8 +2,8 @@ import { getPaginationItems } from '@/utils/getPagination.helper'
 import { PageLink, WrapperPagination } from './styles'
 
 interface PaginationProps {
-  currentPage: number
-  lastPage: number
+  currentPage: number | undefined
+  lastPage: number | undefined
   maxLength: number
   setCurrentPage: (newPage: number) => void
 }
@@ -18,9 +18,11 @@ export const Pagination = ({
 
   return (
     <WrapperPagination aria-label="Pagination">
-      <PageLink disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
-        Previous
-      </PageLink>
+      {currentPage && (
+        <PageLink disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
+          Previous
+        </PageLink>
+      )}
 
       {pageNums.map((pageNum, idx) => (
         <PageLink
@@ -32,9 +34,14 @@ export const Pagination = ({
           {!isNaN(pageNum) ? pageNum : '...'}
         </PageLink>
       ))}
-      <PageLink disabled={currentPage === lastPage} onClick={() => setCurrentPage(currentPage + 1)}>
-        Next
-      </PageLink>
+      {currentPage && lastPage && (
+        <PageLink
+          disabled={currentPage === lastPage}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+        </PageLink>
+      )}
     </WrapperPagination>
   )
 }

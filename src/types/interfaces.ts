@@ -17,3 +17,18 @@ export interface ArtworkById extends Artwork {
 export interface ArtworkByIdWithImage extends ArtworkById {
   imageUrl: string
 }
+interface Pagination {
+  total_pages: number
+  current_page: number
+  limit: number
+  offset: number
+  total: number
+}
+export interface ArtworkSearch {
+  pagination: Pagination
+  data: {
+    api_link: string
+    id: number
+    title: string
+  }[]
+}
