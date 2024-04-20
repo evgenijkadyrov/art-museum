@@ -8,7 +8,7 @@ export interface UseToggleFavoriteArtProps {
 
 export const useToggleFavoriteArt = (): UseToggleFavoriteArtProps => {
   const [favorites, setFavorites] = useState<ArtworkByIdWithImage[]>([])
-
+  console.log('useTogglefavor')
   const handleClickFavorite = ({
     id,
     title,

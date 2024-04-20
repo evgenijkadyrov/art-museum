@@ -17,13 +17,15 @@ export const Content = () => {
   const [searchValue, setSearchValue] = useState('')
   const { favorites, handleClickFavorite } = useToggleFavoriteArt()
   const { currentPage, handlePageChange } = useHandlePagination()
-  const { artList, isLoading } = useFetchArtList()
+  const { artList, isLoading, allPage, currentArtworksPage } = useFetchArtList(currentPage)
   const { artworksRecommended } = useFetchRecommendedArtData()
   const { filteredArtList, totalSearchPage, currentSearchPage } = useSearchArtworks(
     searchValue,
     currentPage
   )
-  console.log('totalP', totalSearchPage)
+  // console.log('sear', !!searchValue)
+  // console.log('artlis', artList)
+  console.log('filteredArtList', filteredArtList)
 
   return (
     <Wrapper>
@@ -32,14 +34,14 @@ export const Content = () => {
         <SearchArtworkForm setSearchValue={setSearchValue} />
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
         <ItemsList
-          data={searchValue ? filteredArtList : filteredArtList}
+          data={searchValue ? filteredArtList : artList}
           isLoading={isLoading}
           favorites={favorites}
           handleClickFavorite={handleClickFavorite}
         />
         <Pagination
-          currentPage={searchValue ? currentSearchPage : currentPage}
-          lastPage={searchValue ? totalSearchPage : artList.length}
+          currentPage={searchValue ? currentSearchPage : currentArtworksPage}
+          lastPage={searchValue ? totalSearchPage : allPage}
           maxLength={MAX_LENGTH_PAGINATION}
           setCurrentPage={handlePageChange}
         />

@@ -17,11 +17,13 @@ export function useSearchArtworks(
   const [filteredArtList, setFilteredArtList] = useState<ArtworkByIdWithImage[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [totalSearchPage, setTotalSearchPage] = useState<number>()
-  const [currentSearchPage, setCurrentSearchPage] = useState<number>()
+  const [currentSearchPage, setCurrentSearchPage] = useState(1)
+
   useEffect(() => {
     const searchArtworksList = async () => {
       setIsLoading(true)
       try {
+        setCurrentSearchPage(1)
         const res = await searchArtworks(searchValue, currentPage)
         setTotalSearchPage(res.pagination.total_pages)
         setCurrentSearchPage(res.pagination.current_page)
@@ -33,12 +35,11 @@ export function useSearchArtworks(
             imageUrl: generateLink(artworkData.image_id),
           }
           arts.push(artworkWithImage)
+          setIsLoading(false)
         })
         setFilteredArtList(arts)
       } catch (error) {
         console.error('Error retrieving artworks:', error)
-      } finally {
-        setIsLoading(false)
       }
     }
 

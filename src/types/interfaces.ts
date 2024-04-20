@@ -24,6 +24,10 @@ interface Pagination {
   offset: number
   total: number
 }
+export interface ArtworkFetch {
+  pagination: Pagination
+  data: Artwork[]
+}
 export interface ArtworkSearch {
   pagination: Pagination
   data: {

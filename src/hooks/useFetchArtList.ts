@@ -6,18 +6,25 @@ import { ArtworkByIdWithImage } from '@/types/interfaces'
 export interface UseFetchArtListProps {
   artList: ArtworkByIdWithImage[]
   isLoading: boolean
+  allPage: number
+  currentArtworksPage: number
 }
 
-export function useFetchArtList(): UseFetchArtListProps {
+export function useFetchArtList(currentPage: number): UseFetchArtListProps {
   const [artList, setArtList] = useState<ArtworkByIdWithImage[]>([])
   const [isLoading, setIsLoading] = useState(false)
-
+  const [allPage, setAllPage] = useState<number>(1)
+  const [currentArtworksPage, setCurrentArtworksPage] = useState(1)
+  console.log(artList)
   useEffect(() => {
     const fetchArtList = async () => {
       setIsLoading(true)
       try {
-        const res = await fetchArtLists()
-        const artworksWithImages = res.map(
+        const res = await fetchArtLists(currentPage)
+        setAllPage(res.pagination.total_pages)
+        setCurrentArtworksPage(res.pagination.current_page)
+
+        const artworksWithImages = res.data.map(
           (artwork) =>
             ({
               ...artwork,
@@ -33,7 +40,7 @@ export function useFetchArtList(): UseFetchArtListProps {
     }
 
     fetchArtList()
-  }, [])
+  }, [currentPage])
 
-  return { artList, isLoading }
+  return { artList, isLoading, allPage, currentArtworksPage }
 }
