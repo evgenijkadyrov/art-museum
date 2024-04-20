@@ -7,16 +7,15 @@ import { ChangeEvent } from 'react'
 
 interface SearchArtworkProps {
   setSearchValue: (value: string) => void
-  setCurrentPage: (page: number) => void
 }
 
-export const SearchArtworkForm = ({ setSearchValue, setCurrentPage }: SearchArtworkProps) => {
+export const SearchArtworkForm = ({ setSearchValue }: SearchArtworkProps) => {
   const validationSchema = Yup.object({
     search: Yup.string().max(15, 'Maximum 15 symbols'),
   })
   const handleSearchDebounce = debounce((value: string) => {
-    setSearchValue(value)
-    setCurrentPage(1)
+    const newTitle = value.trim().toLowerCase()
+    setSearchValue(newTitle)
   }, 600)
 
   return (

@@ -1,8 +1,17 @@
 import { PAGE_NUMBER_DEFAULT } from '@/constants/constants'
 
-export const getPaginationItems = (currentPage: number, lastPage: number, maxLength: number) => {
+export const getPaginationItems = (
+  currentPage: number | undefined,
+  lastPage: number | undefined,
+  maxLength: number
+) => {
   const res: Array<number> = []
-
+  if (currentPage === undefined) {
+    currentPage = 1
+  }
+  if (lastPage === undefined) {
+    lastPage = 1
+  }
   if (lastPage <= maxLength) {
     for (let i = 1; i <= lastPage; i++) {
       res.push(i)

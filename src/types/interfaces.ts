@@ -3,6 +3,7 @@ export interface Artwork {
   title: string
   artist_title: string
   image_id: string
+  date_end: number
 }
 
 export interface ArtworkById extends Artwork {
@@ -17,3 +18,24 @@ export interface ArtworkById extends Artwork {
 export interface ArtworkByIdWithImage extends ArtworkById {
   imageUrl: string
 }
+interface Pagination {
+  total_pages: number
+  current_page: number
+  limit: number
+  offset: number
+  total: number
+}
+export interface ArtworkFetch {
+  pagination: Pagination
+  data: Artwork[]
+}
+export interface ArtworkSearch {
+  pagination: Pagination
+  data: {
+    api_link: string
+    id: number
+    title: string
+  }[]
+}
+
+export type SortOption = 'inc' | 'asc' | 'latest' | 'newest' | ''
