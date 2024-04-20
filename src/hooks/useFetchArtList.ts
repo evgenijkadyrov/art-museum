@@ -1,5 +1,5 @@
 import { fetchArtLists } from '@/api/api'
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { generateLink } from '@/utils/generateLink.helper'
 import { ArtworkByIdWithImage } from '@/types/interfaces'
 
@@ -8,7 +8,7 @@ export interface UseFetchArtListProps {
   isLoading: boolean
   allPage: number
   currentArtworksPage: number
-  setArtList: (data: ArtworkByIdWithImage[]) => void
+  setArtList: Dispatch<SetStateAction<ArtworkByIdWithImage[]>>
 }
 
 export function useFetchArtList(currentPage: number): UseFetchArtListProps {

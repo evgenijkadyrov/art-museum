@@ -4,12 +4,12 @@ import {
   SelectWrapper,
   StyledSelect,
 } from '@components/SortingItems/SelectComponent/styles'
-import { ChangeEvent, Dispatch, SetStateAction } from 'react'
+import { ChangeEvent } from 'react'
 import { SortOption } from '@/types/interfaces'
 
 interface SelectComponentProps {
   sortType: SortOption
-  setSortType: Dispatch<SetStateAction<SortOption>>
+  setSortType: (type: SortOption) => void
 }
 
 export const SelectComponent = ({ setSortType, sortType }: SelectComponentProps) => {
