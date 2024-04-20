@@ -13,13 +13,10 @@ export const Image = styled.div<ImageProps>`
   background-size: cover;
   cursor: pointer;
   background-repeat: no-repeat;
-  //@media ( max-width: 390px ) {
-  //  width: 262px;
-  //}
 `
 export const WrapperItem = styled.div`
   display: flex;
-  max-width: 400px;
+  max-width: 450px;
   height: 450px;
   flex-direction: column;
   justify-content: center;

@@ -4,46 +4,45 @@ import { TitlePage } from '@/common/TitlePage'
 import { useState } from 'react'
 import { Pagination } from '@components/MainItems/Pagination'
 import { TitleGallery } from '@/common/TitleForGallery'
-import { ART_FOR_PAGE, MAX_LENGTH_PAGINATION } from '@/constants/constants'
-import { totalPageNumber } from '@/utils/calcTotalPage.helper'
+import { MAX_LENGTH_PAGINATION } from '@/constants/constants'
 import { AdditionalItems } from '@components/AdditionalItems'
-import { SearchArtworkForm } from '@components/SearchField/Search'
+import { SearchArtworkForm } from '@components/SearchField'
 import { useFetchRecommendedArtData } from '@/hooks/useFetchRecommendedArtData'
-import { getItemsPerPageHelper } from '@/utils/getItemsPerPage.helper'
-import { useFilteredArtList } from '@/hooks/useFiltredArtList'
 import { useFetchArtList } from '@/hooks/useFetchArtList'
 import { useHandlePagination } from '@/hooks/useHandlePagination'
 import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
+import { useSearchArtworks } from '@/hooks/useSearchArtworks'
+import { SortComponent } from '@components/SortingItems'
 
 export const Content = () => {
   const [searchValue, setSearchValue] = useState('')
   const { favorites, handleClickFavorite } = useToggleFavoriteArt()
-  const { currentPage, setCurrentPage, handlePageChange } = useHandlePagination()
-  const { artList, isLoading } = useFetchArtList()
+  const { currentPage, handlePageChange } = useHandlePagination()
+  const { artList, isLoading, allPage, currentArtworksPage, setArtList } =
+    useFetchArtList(currentPage)
   const { artworksRecommended } = useFetchRecommendedArtData()
-  const { filteredArtList } = useFilteredArtList(searchValue, artList)
-
-  const currentItems = getItemsPerPageHelper(artList, ART_FOR_PAGE, currentPage)
-  const currentItemsFilter = getItemsPerPageHelper(filteredArtList, ART_FOR_PAGE, currentPage)
+  const { filteredArtList, totalSearchPage, currentSearchPage, setFilteredArtList } =
+    useSearchArtworks(searchValue, currentPage)
 
   return (
     <Wrapper>
       <StyledContent>
         <TitlePage firstLine={'Lets Find Some '} secondLine={'Here!'} isActive={true} />
-        <SearchArtworkForm setSearchValue={setSearchValue} setCurrentPage={setCurrentPage} />
+        <SearchArtworkForm setSearchValue={setSearchValue} />
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
+        <SortComponent
+          data={searchValue ? filteredArtList : artList}
+          setData={searchValue ? setFilteredArtList : setArtList}
+        />
         <ItemsList
-          data={searchValue ? currentItemsFilter : currentItems}
+          data={searchValue ? filteredArtList : artList}
           isLoading={isLoading}
           favorites={favorites}
           handleClickFavorite={handleClickFavorite}
         />
         <Pagination
-          currentPage={currentPage}
-          lastPage={totalPageNumber(
-            searchValue ? filteredArtList.length : artList.length,
-            ART_FOR_PAGE
-          )}
+          currentPage={searchValue ? currentSearchPage : currentArtworksPage}
+          lastPage={searchValue ? totalSearchPage : allPage}
           maxLength={MAX_LENGTH_PAGINATION}
           setCurrentPage={handlePageChange}
         />
