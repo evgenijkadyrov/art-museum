@@ -8,6 +8,7 @@ export interface UseFetchArtListProps {
   isLoading: boolean
   allPage: number
   currentArtworksPage: number
+  setArtList: (data: ArtworkByIdWithImage[]) => void
 }
 
 export function useFetchArtList(currentPage: number): UseFetchArtListProps {
@@ -42,5 +43,5 @@ export function useFetchArtList(currentPage: number): UseFetchArtListProps {
     fetchArtList()
   }, [currentPage])
 
-  return { artList, isLoading, allPage, currentArtworksPage }
+  return { artList, isLoading, allPage, currentArtworksPage, setArtList }
 }

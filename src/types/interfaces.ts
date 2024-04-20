@@ -3,6 +3,7 @@ export interface Artwork {
   title: string
   artist_title: string
   image_id: string
+  date_end: number
 }
 
 export interface ArtworkById extends Artwork {

@@ -12,12 +12,14 @@ import { useFetchArtList } from '@/hooks/useFetchArtList'
 import { useHandlePagination } from '@/hooks/useHandlePagination'
 import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
 import { useSearchArtworks } from '@/hooks/useSearchArtworks'
+import SortComponent from '@components/SortingItems'
 
 export const Content = () => {
   const [searchValue, setSearchValue] = useState('')
   const { favorites, handleClickFavorite } = useToggleFavoriteArt()
   const { currentPage, handlePageChange } = useHandlePagination()
-  const { artList, isLoading, allPage, currentArtworksPage } = useFetchArtList(currentPage)
+  const { artList, isLoading, allPage, currentArtworksPage, setArtList } =
+    useFetchArtList(currentPage)
   const { artworksRecommended } = useFetchRecommendedArtData()
   const { filteredArtList, totalSearchPage, currentSearchPage } = useSearchArtworks(
     searchValue,
@@ -33,6 +35,7 @@ export const Content = () => {
         <TitlePage firstLine={'Lets Find Some '} secondLine={'Here!'} isActive={true} />
         <SearchArtworkForm setSearchValue={setSearchValue} />
         <TitleGallery firstLineText={'Topics for you'} secondLineText={'Our special gallery'} />
+        <SortComponent data={artList} setData={setArtList} />
         <ItemsList
           data={searchValue ? filteredArtList : artList}
           isLoading={isLoading}

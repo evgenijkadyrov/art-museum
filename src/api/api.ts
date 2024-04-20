@@ -18,7 +18,7 @@ export const fetchArtLists = async (currentPage: number): Promise<ArtworkFetch> 
         },
         page: currentPage,
         limit: ART_FOR_PAGE,
-        fields: 'id,artist_title,title,image_id',
+        fields: 'id,artist_title,title,image_id,date_end',
       },
     })
 
