@@ -37,3 +37,5 @@ export interface ArtworkSearch {
     title: string
   }[]
 }
+
+export type SortOption = 'inc' | 'asc' | 'latest' | 'newest' | ''

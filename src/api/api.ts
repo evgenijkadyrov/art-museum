@@ -21,7 +21,6 @@ export const fetchArtLists = async (currentPage: number): Promise<ArtworkFetch> 
         fields: 'id,artist_title,title,image_id,date_end',
       },
     })
-
     return response.data
   } catch (error) {
     console.error('Error retrieving artworks:', error)
@@ -38,7 +37,6 @@ export const fetchRecommendedArtworks = async (): Promise<Artwork[]> => {
         fields: 'id,title,artist_title,image_id',
       },
     })
-
     return response.data.data
   } catch (error) {
     console.error('Error retrieving artworks:', error)
@@ -79,7 +77,6 @@ export const searchArtworks = async (
         fields: 'id,title,api_link',
       },
     })
-
     return response.data
   } catch (error) {
     console.error('Error retrieving artworks:', error)

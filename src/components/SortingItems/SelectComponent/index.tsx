@@ -1,12 +1,20 @@
 import {
+  ChevronDownStyled,
   SelectContainer,
   SelectWrapper,
   StyledSelect,
 } from '@components/SortingItems/SelectComponent/styles'
+import { ChangeEvent, Dispatch, SetStateAction } from 'react'
+import { SortOption } from '@/types/interfaces'
 
-const SelectComponent = ({ setSortType, sortType }) => {
-  const handleSelectChange = (event) => {
-    setSortType(event.target.value)
+interface SelectComponentProps {
+  sortType: SortOption
+  setSortType: Dispatch<SetStateAction<SortOption>>
+}
+
+export const SelectComponent = ({ setSortType, sortType }: SelectComponentProps) => {
+  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSortType(event.target.value as SortOption)
   }
 
   return (
@@ -19,9 +27,8 @@ const SelectComponent = ({ setSortType, sortType }) => {
           <option value="newest">Newest</option>
           <option value="latest">Latest</option>
         </StyledSelect>
+        <ChevronDownStyled />
       </SelectWrapper>
     </SelectContainer>
   )
 }
-
-export default SelectComponent
