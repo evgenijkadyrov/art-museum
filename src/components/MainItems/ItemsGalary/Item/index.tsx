@@ -1,8 +1,10 @@
-import { ItemInfo } from '@components/MainItems/ItemsGalary/Item/ItemInfo'
-import { Image, WrapperItem } from './styles'
-import { useNavigate } from 'react-router-dom'
 import { LoadingSpinner } from '@components/Loader'
+import { ItemInfo } from '@components/MainItems/ItemsGalary/Item/ItemInfo'
+import { useNavigate } from 'react-router-dom'
+
 import { ArtworkByIdWithImage } from '@/types/interfaces'
+
+import { Image, WrapperItem } from './styles'
 
 interface ItemProps {
   el: ArtworkByIdWithImage
@@ -22,7 +24,7 @@ export const Item = ({ el, isLoading, favorites, handleClickFavorite }: ItemProp
         <LoadingSpinner />
       ) : (
         <>
-          <Image background_url={el.imageUrl} onClick={handleClick} />
+          <Image background_url={el.imageUrl} onClick={handleClick} alt={el?.title} />
           <ItemInfo data={el} favorites={favorites} handleClickFavorite={handleClickFavorite} />
         </>
       )}

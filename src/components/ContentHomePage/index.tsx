@@ -22,7 +22,8 @@ export const Content = () => {
   const { currentPage, handlePageChange } = useHandlePagination()
   const { artList, isLoading, allPage, currentArtworksPage, setArtList } =
     useFetchArtList(currentPage)
-  const { artworksRecommended } = useFetchRecommendedArtData()
+  const { artworksRecommended, isLoading: isLoadingRecommendation } =
+    useFetchRecommendedArtData(currentPage)
   const {
     filteredArtList,
     totalSearchPage,
@@ -59,7 +60,7 @@ export const Content = () => {
         <TitleGallery firstLineText={'Here some more'} secondLineText={'Other works for you'} />
         <AdditionalItems
           data={artworksRecommended}
-          isLoading={isLoading}
+          isLoading={isLoadingRecommendation}
           isFavoritesPage={false}
           favorites={favorites}
           handleClickFavorite={handleClickFavorite}

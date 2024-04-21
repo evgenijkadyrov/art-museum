@@ -1,5 +1,3 @@
-import { BookMark } from '@/assets/icons/BookMark'
-import { useNavigate } from 'react-router-dom'
 import {
   AdditionalItem,
   FavoritesIcon,
@@ -11,9 +9,11 @@ import {
   WrapperContainer,
 } from '@components/AdditionalItems/styles'
 import { LoadingSpinner } from '@components/Loader'
-
-import { ArtworkByIdWithImage } from '@/types/interfaces'
 import { memo, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { BookMark } from '@/assets/icons/BookMark'
+import { ArtworkByIdWithImage } from '@/types/interfaces'
 
 interface AdditionalItemsProps {
   data: ArtworkByIdWithImage[]
@@ -40,7 +40,11 @@ export const AdditionalItems = memo(
             {isLoading ? (
               <LoadingSpinner />
             ) : (
-              <Image background_url={el.imageUrl} onClick={handleClickImage(el.id)} />
+              <Image
+                background_url={el.imageUrl}
+                onClick={handleClickImage(el.id)}
+                alt={el?.title}
+              />
             )}
             <WrapperContainer>
               <ItemTitle>{el.title}</ItemTitle>
