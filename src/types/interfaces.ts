@@ -38,4 +38,4 @@ export interface ArtworkSearch {
   }[]
 }
 
-export type SortOption = 'inc' | 'asc' | 'latest' | 'newest' | ''
+export type SortOption = 'asc' | 'desc' | 'latest' | 'newest' | ''

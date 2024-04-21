@@ -9,7 +9,7 @@ export const Image = styled.div<ImageProps>`
   height: 100%;
   border-radius: 8px;
   background-image: url(${({ background_url }) =>
-    background_url || 'src/assets/images/modsen.png'});
+    background_url || 'src/assets/images/no_image.jpg'});
   background-position: center;
   background-size: cover;
   cursor: pointer;

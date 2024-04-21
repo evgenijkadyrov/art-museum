@@ -6,14 +6,14 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
-    "plugin:react/jsx-runtime",
-    "prettier",
+    'plugin:react/jsx-runtime',
+    'prettier',
     'plugin:vitest-globals/recommended',
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs", "*.css"],
 
   parser: "@typescript-eslint/parser",
-  plugins: ["react", "prettier", "react-refresh"],
+  plugins: ["react", "prettier", "react-refresh","simple-import-sort"],
   parserOptions: {
     "ecmaVersion": 2021,
     "sourceType": "module",
@@ -50,5 +50,8 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+
   },
 };

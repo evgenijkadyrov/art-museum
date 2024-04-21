@@ -1,15 +1,17 @@
 import { ErrorMessage, Formik } from 'formik'
-import * as Yup from 'yup'
 import { debounce } from 'lodash'
-import { ErrorStyled, FieldStyled, SearchFormContainer, StyledButton, StyledForm } from './styles'
+import { ChangeEvent, memo } from 'react'
+import * as Yup from 'yup'
+
 import { SearchIcon } from '@/assets/icons/SearchIcon'
-import { ChangeEvent } from 'react'
+
+import { ErrorStyled, FieldStyled, SearchFormContainer, StyledButton, StyledForm } from './styles'
 
 interface SearchArtworkProps {
   setSearchValue: (value: string) => void
 }
 
-export const SearchArtworkForm = ({ setSearchValue }: SearchArtworkProps) => {
+export const SearchArtworkForm = memo(({ setSearchValue }: SearchArtworkProps) => {
   const validationSchema = Yup.object({
     search: Yup.string().max(15, 'Maximum 15 symbols'),
   })
@@ -50,4 +52,4 @@ export const SearchArtworkForm = ({ setSearchValue }: SearchArtworkProps) => {
       )}
     </Formik>
   )
-}
+})

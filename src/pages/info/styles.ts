@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { colors } from '@/constants/colors'
 
 export const TitleOfArticle = styled.div`
@@ -57,7 +58,7 @@ export const Image = styled.div<{ background_url: string | null | undefined }>`
   height: 570px;
   margin-right: 80px;
   background-image: url(${({ background_url }) =>
-    background_url ? background_url : 'src/assets/images/modsen.png'});
+    background_url ? background_url : 'src/assets/images/no_image.jpg'});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

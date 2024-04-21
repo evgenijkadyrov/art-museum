@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { calcRandomPageNumber } from '@/utils/calcRandomPage.helper'
+
 import { ART_FOR_PAGE, ART_RECOMMENDED_LIMIT_FOR_PAGE } from '@/constants/constants'
 import { Artwork, ArtworkById, ArtworkFetch, ArtworkSearch } from '@/types/interfaces'
+import { calcRandomPageNumber } from '@/utils/calcRandomPage.helper'
 
 export const instance: AxiosInstance = axios.create({
   baseURL: 'https://api.artic.edu/api/v1/',
@@ -75,6 +76,35 @@ export const searchArtworks = async (
         limit: 3,
         page: currentPage,
         fields: 'id,title,api_link',
+      },
+    })
+    return response.data
+  } catch (error) {
+    console.error('Error retrieving artworks:', error)
+    throw error
+  }
+}
+export const sortArtworksByTitle = async (
+  sortType: string,
+  currentPage: number
+): Promise<ArtworkSearch> => {
+  try {
+    const response: AxiosResponse = await instance.get('artworks/search', {
+      params: {
+        fields: 'id,artist_title,title,image_id,date_end',
+        query: {
+          term: {
+            is_public_domain: true,
+          },
+        },
+        sort: [
+          {
+            'title.keyword': sortType,
+          },
+        ],
+
+        limit: 3,
+        page: currentPage,
       },
     })
     return response.data

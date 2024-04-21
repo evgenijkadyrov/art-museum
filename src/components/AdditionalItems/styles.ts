@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { colors } from '@/constants/colors'
 
 export const FavoritesIcon = styled.button`
@@ -59,7 +60,7 @@ export const Image = styled.div<ImageProps>`
   width: 80px;
   height: 80px;
   background-image: url(${({ background_url }) =>
-    background_url ? background_url : 'src/assets/images/modsen.png'});
+    background_url ? background_url : 'src/assets/images/no_image.jpg'});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
