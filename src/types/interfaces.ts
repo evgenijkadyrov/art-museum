@@ -16,7 +16,7 @@ export interface ArtworkById extends Artwork {
 }
 
 export interface ArtworkByIdWithImage extends ArtworkById {
-  imageUrl: string
+  imageUrl: string | null
 }
 interface Pagination {
   total_pages: number

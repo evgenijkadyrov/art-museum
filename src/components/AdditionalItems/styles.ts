@@ -52,13 +52,14 @@ export const ItemAuthor = styled.div`
 `
 
 interface ImageProps {
-  background_url: string
+  background_url: string | null
 }
 
 export const Image = styled.div<ImageProps>`
   width: 80px;
   height: 80px;
-  background-image: url(${(props) => props.background_url});
+  background-image: url(${({ background_url }) =>
+    background_url ? background_url : 'src/assets/images/modsen.png'});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

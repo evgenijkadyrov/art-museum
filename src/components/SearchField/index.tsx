@@ -17,7 +17,6 @@ export const SearchArtworkForm = ({ setSearchValue }: SearchArtworkProps) => {
     const newTitle = value.trim().toLowerCase()
     setSearchValue(newTitle)
   }, 600)
-
   return (
     <Formik
       initialValues={{ search: '' }}

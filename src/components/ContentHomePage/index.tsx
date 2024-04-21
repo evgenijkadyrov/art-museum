@@ -1,7 +1,7 @@
 import { StyledContent, Wrapper } from './styles'
 import { ItemsList } from '@components/MainItems/ItemsGalary'
 import { TitlePage } from '@/common/TitlePage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Pagination } from '@components/MainItems/Pagination'
 import { TitleGallery } from '@/common/TitleForGallery'
 import { MAX_LENGTH_PAGINATION } from '@/constants/constants'
@@ -21,9 +21,17 @@ export const Content = () => {
   const { artList, isLoading, allPage, currentArtworksPage, setArtList } =
     useFetchArtList(currentPage)
   const { artworksRecommended } = useFetchRecommendedArtData()
-  const { filteredArtList, totalSearchPage, currentSearchPage, setFilteredArtList } =
-    useSearchArtworks(searchValue, currentPage)
-
+  const {
+    filteredArtList,
+    totalSearchPage,
+    setFilteredArtList,
+    isLoading: isSearchLoading,
+  } = useSearchArtworks(searchValue, currentPage)
+  useEffect(() => {
+    if (searchValue) {
+      handlePageChange(1)
+    }
+  }, [searchValue])
   return (
     <Wrapper>
       <StyledContent>
@@ -36,12 +44,13 @@ export const Content = () => {
         />
         <ItemsList
           data={searchValue ? filteredArtList : artList}
-          isLoading={isLoading}
+          isLoading={searchValue ? isSearchLoading : isLoading}
           favorites={favorites}
           handleClickFavorite={handleClickFavorite}
         />
         <Pagination
-          currentPage={searchValue ? currentSearchPage : currentArtworksPage}
+          // currentPage={searchValue ? currentSearchPage : currentArtworksPage}
+          currentPage={currentArtworksPage}
           lastPage={searchValue ? totalSearchPage : allPage}
           maxLength={MAX_LENGTH_PAGINATION}
           setCurrentPage={handlePageChange}

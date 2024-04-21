@@ -11,7 +11,6 @@ export interface useFetchRecommendedArtDataProps {
 export const useFetchRecommendedArtData = (): useFetchRecommendedArtDataProps => {
   const [artworksRecommended, setArtworksRecommended] = useState<ArtworkByIdWithImage[]>([])
   const [isLoading, setIsLoading] = useState(false)
-
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       setIsLoading(true)

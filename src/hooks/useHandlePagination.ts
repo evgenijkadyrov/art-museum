@@ -11,6 +11,5 @@ export const useHandlePagination = (): UseHandlePageChangeProps => {
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber)
   }
-  console.log(currentPage)
   return { currentPage, setCurrentPage, handlePageChange }
 }

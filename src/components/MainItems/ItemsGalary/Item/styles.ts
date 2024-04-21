@@ -1,14 +1,15 @@
 import styled from 'styled-components'
 
 interface ImageProps {
-  background_url: string
+  background_url: string | null
 }
 
 export const Image = styled.div<ImageProps>`
   max-width: 100%;
   height: 100%;
   border-radius: 8px;
-  background-image: url(${({ background_url }) => background_url});
+  background-image: url(${({ background_url }) =>
+    background_url || 'src/assets/images/modsen.png'});
   background-position: center;
   background-size: cover;
   cursor: pointer;

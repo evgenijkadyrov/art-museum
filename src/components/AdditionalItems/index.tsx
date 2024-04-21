@@ -32,7 +32,6 @@ export const AdditionalItems = memo(
       },
       [navigate]
     )
-    console.log('addit')
     const dataToShow = isFavoritesPage ? favorites : data
     return (
       <WrapperAdditionalItems>

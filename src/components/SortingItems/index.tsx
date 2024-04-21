@@ -15,6 +15,5 @@ export const SortComponent = ({ data, setData }: SortComponentProps) => {
     setData(sortedData)
     setSortType(type)
   }
-
   return <SelectComponent setSortType={handleSort} sortType={sortType} />
 }

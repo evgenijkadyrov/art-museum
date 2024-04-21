@@ -16,15 +16,16 @@ export const Item = ({ el, isLoading, favorites, handleClickFavorite }: ItemProp
   const handleClick = () => {
     navigate(`/${el.id}`)
   }
-
   return (
     <WrapperItem>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <Image background_url={el.imageUrl} onClick={handleClick} />
+        <>
+          <Image background_url={el.imageUrl} onClick={handleClick} />
+          <ItemInfo data={el} favorites={favorites} handleClickFavorite={handleClickFavorite} />
+        </>
       )}
-      <ItemInfo data={el} favorites={favorites} handleClickFavorite={handleClickFavorite} />
     </WrapperItem>
   )
 }

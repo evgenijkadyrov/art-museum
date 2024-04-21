@@ -52,11 +52,12 @@ export const ContainerDescription = styled.div`
   max-width: 400px;
   margin-left: 20px;
 `
-export const Image = styled.div<{ background_url: string | undefined }>`
+export const Image = styled.div<{ background_url: string | null | undefined }>`
   width: 500px;
   height: 570px;
   margin-right: 80px;
-  background-image: url(${({ background_url }) => background_url});
+  background-image: url(${({ background_url }) =>
+    background_url ? background_url : 'src/assets/images/modsen.png'});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
