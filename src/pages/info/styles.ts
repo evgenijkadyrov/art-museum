@@ -53,7 +53,12 @@ export const ContainerDescription = styled.div`
   max-width: 400px;
   margin-left: 20px;
 `
-export const Image = styled.div<{ background_url: string | null | undefined }>`
+
+interface ImageProps {
+  background_url: string | null | undefined
+}
+
+export const Image = styled.div<ImageProps>`
   width: 500px;
   height: 570px;
   margin-right: 80px;

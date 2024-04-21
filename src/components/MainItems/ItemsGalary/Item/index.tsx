@@ -24,7 +24,7 @@ export const Item = ({ el, isLoading, favorites, handleClickFavorite }: ItemProp
         <LoadingSpinner />
       ) : (
         <>
-          <Image background_url={el.imageUrl} onClick={handleClick} alt={el?.title} />
+          <Image background_url={el.imageUrl} onClick={handleClick} />
           <ItemInfo data={el} favorites={favorites} handleClickFavorite={handleClickFavorite} />
         </>
       )}

@@ -40,11 +40,7 @@ export const AdditionalItems = memo(
             {isLoading ? (
               <LoadingSpinner />
             ) : (
-              <Image
-                background_url={el.imageUrl}
-                onClick={handleClickImage(el.id)}
-                alt={el?.title}
-              />
+              <Image background_url={el.imageUrl} onClick={handleClickImage(el.id)} />
             )}
             <WrapperContainer>
               <ItemTitle>{el.title}</ItemTitle>

@@ -89,7 +89,10 @@ export const CloseIconContainer = styled.div`
   top: 10px;
   right: 10px;
 `
-export const LogoMuseumContainer = styled.div`
+interface LogoMuseumProps {
+  showMenu: boolean
+}
+export const LogoMuseumContainer = styled.div<LogoMuseumProps>`
   cursor: pointer;
   @media (max-width: 1024px) {
     visibility: hidden;

@@ -31,7 +31,7 @@ export const Info = () => {
               <LoadingSpinner />
             ) : (
               <ImageWrapper>
-                <Image background_url={artwork?.imageUrl} alt={artwork?.title} />
+                <Image background_url={artwork?.imageUrl} />
               </ImageWrapper>
             )}
             <ContainerDescription>

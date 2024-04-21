@@ -1,20 +1,24 @@
-import { ErrorMessage, Formik } from 'formik'
+import { Formik } from 'formik'
 import { debounce } from 'lodash'
 import { ChangeEvent, memo } from 'react'
 import * as Yup from 'yup'
 
 import { SearchIcon } from '@/assets/icons/SearchIcon'
 
-import { ErrorStyled, FieldStyled, SearchFormContainer, StyledButton, StyledForm } from './styles'
+import { FieldStyled, SearchFormContainer, StyledButton, StyledForm } from './styles'
 
 interface SearchArtworkProps {
   setSearchValue: (value: string) => void
 }
 
 export const SearchArtworkForm = memo(({ setSearchValue }: SearchArtworkProps) => {
-  const validationSchema = Yup.object({
-    search: Yup.string().max(15, 'Maximum 15 symbols'),
+  const pattern = /^[a-zA-Z0-9\s]*$/
+  const validationSchema = Yup.object().shape({
+    search: Yup.string()
+      .max(15, 'Maximum 15 symbols')
+      .matches(pattern, 'Invalid characters detected'),
   })
+
   const handleSearchDebounce = debounce((value: string) => {
     const newTitle = value.trim().toLowerCase()
     setSearchValue(newTitle)
@@ -28,7 +32,7 @@ export const SearchArtworkForm = memo(({ setSearchValue }: SearchArtworkProps) =
         resetForm()
       }}
     >
-      {({ handleSubmit, values, handleChange }) => (
+      {({ handleSubmit, values, handleChange, errors, touched }) => (
         <StyledForm onSubmit={handleSubmit}>
           <SearchFormContainer>
             <FieldStyled
@@ -36,14 +40,13 @@ export const SearchArtworkForm = memo(({ setSearchValue }: SearchArtworkProps) =
               name="search"
               placeholder="Search artwork"
               value={values.search}
+              errors={errors.search}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 handleChange(event)
                 handleSearchDebounce(event.target.value)
               }}
             />
-            <ErrorStyled>
-              <ErrorMessage name="search" component="div" className="error" />
-            </ErrorStyled>
+            {errors.search && touched.search && <div>{errors.search}</div>}
           </SearchFormContainer>
           <StyledButton type="submit">
             <SearchIcon />
