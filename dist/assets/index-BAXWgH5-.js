@@ -18623,16 +18623,14 @@ attempted value: ${u}
         });
     }
     required(t) {
-      return super
-        .required(t)
-        .withMutation((n) =>
-          n.test({
-            message: t || Mr.required,
-            name: "required",
-            skipAbsent: !0,
-            test: (r) => !!r.length,
-          }),
-        );
+      return super.required(t).withMutation((n) =>
+        n.test({
+          message: t || Mr.required,
+          name: "required",
+          skipAbsent: !0,
+          test: (r) => !!r.length,
+        }),
+      );
     }
     notRequired() {
       return super
