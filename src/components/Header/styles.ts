@@ -1,14 +1,15 @@
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { colors } from '@/constants/colors'
 import { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import styled, { css } from 'styled-components'
+
+import { colors } from '@/constants/colors'
 
 export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   width: 100%;
   height: 85px;
-  background-color: rgb(54, 53, 53);
+  background-color: ${colors.primary};
 `
 export const Container = styled.div`
   width: 70%;
@@ -28,7 +29,8 @@ export const Logo = styled.div`
   padding: 5px;
 `
 export const MuseumName = styled.div`
-  color: ${(props) => props.color};
+  color: ${({ color }) => color};
+  width: 180px;
   display: flex;
   align-self: end;
   padding: 5px;
@@ -89,4 +91,21 @@ export const CloseIconContainer = styled.div`
 `
 export const LogoMuseumContainer = styled.div`
   cursor: pointer;
+  @media (max-width: 1024px) {
+    visibility: hidden;
+    &::after {
+      content: 'Menu';
+      font-size: 1.25rem;
+      color: ${colors.gold};
+      visibility: ${({ showMenu }) => (showMenu ? 'hidden' : 'visible')};
+    }
+
+    ${({ showMenu }) =>
+      showMenu &&
+      css`
+        &::after {
+          display: none;
+        }
+      `}
+  }
 `

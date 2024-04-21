@@ -12,7 +12,7 @@ export const MenuContainer = styled.div<MenuContainerProps>`
   flex-direction: column;
   justify-content: flex-start;
   max-width: 90%;
-  height: 100vh;
+  height: 100%;
   background-color: #f2f2f2;
   text-align: left;
   padding: 132px 112px 32px 32px;

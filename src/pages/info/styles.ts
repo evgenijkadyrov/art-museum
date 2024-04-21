@@ -140,6 +140,7 @@ export const Content = styled.main`
   display: flex;
   width: 100%;
   margin: 0 auto;
+  min-height: ${window.innerHeight - 212}px;
 
   background-color: ${colors.background};
 `
