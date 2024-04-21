@@ -1,3 +1,10 @@
+import { useState } from 'react'
+
+import { CloseIcon } from '@/assets/icons/CloseIcon'
+import { LogoMuseum } from '@/assets/icons/LogoMuseum'
+import { BurgerMenu } from '@/common/BurgerMenu'
+import { colors } from '@/constants/colors'
+
 import {
   CloseIconContainer,
   Container,
@@ -10,24 +17,19 @@ import {
   StyledLink,
   WrapperLink,
 } from './styles'
-import { LogoMuseum } from '@/assets/icons/LogoMuseum'
-import { BurgerMenu } from '@/common/BurgerMenu'
-import { useState } from 'react'
-import { colors } from '@/constants/colors'
-import { CloseIcon } from '@/assets/icons/CloseIcon'
 
 export const Header = () => {
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const onClose = () => {
-    setOpen(false)
+    setIsOpen(false)
   }
 
   return (
     <StyledHeader>
       <Container>
         <Logo>
-          <BurgerMenu open={open} onClose={onClose}>
-            <CloseIconContainer onClick={() => setOpen(false)}>
+          <BurgerMenu open={isOpen} onClose={onClose}>
+            <CloseIconContainer onClick={() => setIsOpen(false)}>
               <CloseIcon height={36} width={36} />
             </CloseIconContainer>
             <WrapperLink>
@@ -39,10 +41,11 @@ export const Header = () => {
               </StyledBurgerLink>
             </WrapperLink>
           </BurgerMenu>
-          <LogoMuseumContainer onClick={() => setOpen(true)}>
+
+          <LogoMuseumContainer onClick={() => setIsOpen(true)} showMenu={isOpen}>
             <LogoMuseum height={45} width={40} />
           </LogoMuseumContainer>
-          <MuseumName color="white" onClick={() => setOpen(true)}>
+          <MuseumName color="white" onClick={() => setIsOpen(true)}>
             Museum of
             <span>Art</span>
           </MuseumName>

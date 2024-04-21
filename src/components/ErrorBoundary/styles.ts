@@ -1,12 +1,13 @@
 import styled from 'styled-components'
+
 import { colors } from '@/constants/colors'
 
 export const ErrorWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 40vh;
+  width: 100%;
+  height: 40%;
 `
 
 export const Heading = styled.h4`

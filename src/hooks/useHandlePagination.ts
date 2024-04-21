@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 interface UseHandlePageChangeProps {
   currentPage: number
@@ -8,9 +8,10 @@ interface UseHandlePageChangeProps {
 
 export const useHandlePagination = (): UseHandlePageChangeProps => {
   const [currentPage, setCurrentPage] = useState(1)
-  const handlePageChange = (pageNumber: number) => {
+
+  const handlePageChange = useCallback((pageNumber: number) => {
     setCurrentPage(pageNumber)
-  }
-  console.log(currentPage)
+  }, [])
+
   return { currentPage, setCurrentPage, handlePageChange }
 }

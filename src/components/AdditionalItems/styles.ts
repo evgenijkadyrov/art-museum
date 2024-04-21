@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { colors } from '@/constants/colors'
 
 export const FavoritesIcon = styled.button`
@@ -52,13 +53,14 @@ export const ItemAuthor = styled.div`
 `
 
 interface ImageProps {
-  background_url: string
+  background_url: string | null
 }
 
 export const Image = styled.div<ImageProps>`
   width: 80px;
   height: 80px;
-  background-image: url(${(props) => props.background_url});
+  background-image: url(${({ background_url }) =>
+    background_url ? background_url : 'src/assets/images/no_image.jpg'});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

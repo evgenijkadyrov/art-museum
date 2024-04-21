@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import { fetchRecommendedArtworks } from '@/api/api'
 import { ArtworkByIdWithImage } from '@/types/interfaces'
 import { generateLink } from '@/utils/generateLink.helper'
@@ -8,7 +9,9 @@ export interface useFetchRecommendedArtDataProps {
   artworksRecommended: ArtworkByIdWithImage[]
 }
 
-export const useFetchRecommendedArtData = (): useFetchRecommendedArtDataProps => {
+export const useFetchRecommendedArtData = (
+  currentPage: number
+): useFetchRecommendedArtDataProps => {
   const [artworksRecommended, setArtworksRecommended] = useState<ArtworkByIdWithImage[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -24,13 +27,14 @@ export const useFetchRecommendedArtData = (): useFetchRecommendedArtDataProps =>
           } as ArtworkByIdWithImage
         })
         setArtworksRecommended(artworksWithImages)
-        setIsLoading(false)
       } catch (error) {
         console.error('Error retrieving artworks:', error)
+      } finally {
+        setIsLoading(false)
       }
     }
 
     fetchData()
-  }, [])
+  }, [currentPage])
   return { artworksRecommended, isLoading }
 }

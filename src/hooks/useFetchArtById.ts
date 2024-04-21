@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { generateLink } from '@/utils/generateLink.helper'
+
 import { fetchArtworkById } from '@/api/api'
 import { ArtworkByIdWithImage } from '@/types/interfaces'
+import { generateLink } from '@/utils/generateLink.helper'
 
 export const useFetchArtById = (id: string | undefined) => {
   const [artwork, setArtwork] = useState<ArtworkByIdWithImage | null>(null)
@@ -10,14 +11,18 @@ export const useFetchArtById = (id: string | undefined) => {
   useEffect(() => {
     const fetchData = async (id: number) => {
       setIsLoading(true)
-
-      const artworkData = await fetchArtworkById(id)
-      const artworkWithImage: ArtworkByIdWithImage = {
-        ...artworkData,
-        imageUrl: generateLink(artworkData.image_id),
+      try {
+        const artworkData = await fetchArtworkById(id)
+        const artworkWithImage: ArtworkByIdWithImage = {
+          ...artworkData,
+          imageUrl: generateLink(artworkData.image_id),
+        }
+        setArtwork(artworkWithImage)
+      } catch (error) {
+        console.error('Error retrieving artworks:', error)
+      } finally {
+        setIsLoading(false)
       }
-      setIsLoading(true)
-      setArtwork(artworkWithImage)
     }
 
     id && fetchData(+id)

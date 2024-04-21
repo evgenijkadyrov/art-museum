@@ -10,7 +10,7 @@ export default createGlobalStyle`
 
   html, body {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     font-family: Lexend Deca, serif;
   }
 

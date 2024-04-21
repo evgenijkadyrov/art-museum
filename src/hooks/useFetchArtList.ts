@@ -16,7 +16,6 @@ export function useFetchArtList(currentPage: number): UseFetchArtListProps {
   const [isLoading, setIsLoading] = useState(false)
   const [allPage, setAllPage] = useState<number>(1)
   const [currentArtworksPage, setCurrentArtworksPage] = useState(1)
-  console.log(artList)
   useEffect(() => {
     const fetchArtList = async () => {
       setIsLoading(true)
