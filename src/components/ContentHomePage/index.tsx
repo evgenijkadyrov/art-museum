@@ -1,18 +1,20 @@
-import { StyledContent, Wrapper } from './styles'
-import { ItemsList } from '@components/MainItems/ItemsGalary'
-import { TitlePage } from '@/common/TitlePage'
-import { useState } from 'react'
-import { Pagination } from '@components/MainItems/Pagination'
-import { TitleGallery } from '@/common/TitleForGallery'
-import { MAX_LENGTH_PAGINATION } from '@/constants/constants'
 import { AdditionalItems } from '@components/AdditionalItems'
+import { ItemsList } from '@components/MainItems/ItemsGalary'
+import { Pagination } from '@components/MainItems/Pagination'
 import { SearchArtworkForm } from '@components/SearchField'
-import { useFetchRecommendedArtData } from '@/hooks/useFetchRecommendedArtData'
-import { useFetchArtList } from '@/hooks/useFetchArtList'
-import { useHandlePagination } from '@/hooks/useHandlePagination'
-import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
-import { useSearchArtworks } from '@/hooks/useSearchArtworks'
 import { SortComponent } from '@components/SortingItems'
+import { useEffect, useState } from 'react'
+
+import { TitleGallery } from '@/common/TitleForGallery'
+import { TitlePage } from '@/common/TitlePage'
+import { MAX_LENGTH_PAGINATION } from '@/constants/constants'
+import { useFetchArtList } from '@/hooks/useFetchArtList'
+import { useFetchRecommendedArtData } from '@/hooks/useFetchRecommendedArtData'
+import { useHandlePagination } from '@/hooks/useHandlePagination'
+import { useSearchArtworks } from '@/hooks/useSearchArtworks'
+import { useToggleFavoriteArt } from '@/hooks/useToggleFavoriteArt'
+
+import { StyledContent, Wrapper } from './styles'
 
 export const Content = () => {
   const [searchValue, setSearchValue] = useState('')
@@ -20,10 +22,19 @@ export const Content = () => {
   const { currentPage, handlePageChange } = useHandlePagination()
   const { artList, isLoading, allPage, currentArtworksPage, setArtList } =
     useFetchArtList(currentPage)
-  const { artworksRecommended } = useFetchRecommendedArtData()
-  const { filteredArtList, totalSearchPage, currentSearchPage, setFilteredArtList } =
-    useSearchArtworks(searchValue, currentPage)
-
+  const { artworksRecommended, isLoading: isLoadingRecommendation } =
+    useFetchRecommendedArtData(currentPage)
+  const {
+    filteredArtList,
+    totalSearchPage,
+    setFilteredArtList,
+    isLoading: isSearchLoading,
+  } = useSearchArtworks(searchValue, currentPage)
+  useEffect(() => {
+    if (searchValue) {
+      handlePageChange(1)
+    }
+  }, [searchValue])
   return (
     <Wrapper>
       <StyledContent>
@@ -36,12 +47,12 @@ export const Content = () => {
         />
         <ItemsList
           data={searchValue ? filteredArtList : artList}
-          isLoading={isLoading}
+          isLoading={searchValue ? isSearchLoading : isLoading}
           favorites={favorites}
           handleClickFavorite={handleClickFavorite}
         />
         <Pagination
-          currentPage={searchValue ? currentSearchPage : currentArtworksPage}
+          currentPage={currentArtworksPage}
           lastPage={searchValue ? totalSearchPage : allPage}
           maxLength={MAX_LENGTH_PAGINATION}
           setCurrentPage={handlePageChange}
@@ -49,7 +60,7 @@ export const Content = () => {
         <TitleGallery firstLineText={'Here some more'} secondLineText={'Other works for you'} />
         <AdditionalItems
           data={artworksRecommended}
-          isLoading={isLoading}
+          isLoading={isLoadingRecommendation}
           isFavoritesPage={false}
           favorites={favorites}
           handleClickFavorite={handleClickFavorite}

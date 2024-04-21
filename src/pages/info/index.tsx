@@ -1,3 +1,8 @@
+import { LoadingSpinner } from '@components/Loader'
+import { useParams } from 'react-router-dom'
+
+import { Layout } from '@/common/Layout/Layout'
+import { useFetchArtById } from '@/hooks/useFetchArtById'
 import {
   ArticleAuthor,
   AuthorYearsLive,
@@ -12,22 +17,23 @@ import {
   TitleOfArticle,
   Wrapper,
 } from '@/pages/info/styles'
-import { useParams } from 'react-router-dom'
-import { useFetchArtById } from '@/hooks/useFetchArtById'
-import { Layout } from '@/common/Layout/Layout'
 
 export const Info = () => {
   const { id } = useParams<{ id: string | undefined }>()
-  const { artwork } = useFetchArtById(id)
+  const { artwork, isLoading } = useFetchArtById(id)
 
   return (
     <Layout>
       <Content>
         <Wrapper>
           <StyledContent>
-            <ImageWrapper>
-              <Image background_url={artwork?.imageUrl} />
-            </ImageWrapper>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <ImageWrapper>
+                <Image background_url={artwork?.imageUrl} />
+              </ImageWrapper>
+            )}
             <ContainerDescription>
               <CommonInformation>
                 <TitleOfArticle>{artwork?.title}</TitleOfArticle>

@@ -1,5 +1,3 @@
-import { BookMark } from '@/assets/icons/BookMark'
-import { useNavigate } from 'react-router-dom'
 import {
   AdditionalItem,
   FavoritesIcon,
@@ -11,9 +9,11 @@ import {
   WrapperContainer,
 } from '@components/AdditionalItems/styles'
 import { LoadingSpinner } from '@components/Loader'
-
-import { ArtworkByIdWithImage } from '@/types/interfaces'
 import { memo, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { BookMark } from '@/assets/icons/BookMark'
+import { ArtworkByIdWithImage } from '@/types/interfaces'
 
 interface AdditionalItemsProps {
   data: ArtworkByIdWithImage[]
@@ -32,7 +32,6 @@ export const AdditionalItems = memo(
       },
       [navigate]
     )
-    console.log('addit')
     const dataToShow = isFavoritesPage ? favorites : data
     return (
       <WrapperAdditionalItems>

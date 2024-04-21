@@ -12,7 +12,6 @@ interface PaginationProps {
 export const Pagination = memo(
   ({ currentPage, lastPage, maxLength, setCurrentPage }: PaginationProps) => {
     const pageNums = getPaginationItems(currentPage, lastPage, maxLength)
-    console.log('pagination')
     return (
       <WrapperPagination aria-label="Pagination">
         {currentPage && (

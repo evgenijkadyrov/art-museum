@@ -5,9 +5,9 @@ export const sortData = (
   type: SortOption
 ): ArtworkByIdWithImage[] => {
   switch (type) {
-    case 'inc':
-      return [...data].sort((a, b) => a.title.localeCompare(b.title))
     case 'asc':
+      return [...data].sort((a, b) => a.title.localeCompare(b.title))
+    case 'desc':
       return [...data].sort((a, b) => b.title.localeCompare(a.title))
     case 'latest':
       return [...data].sort(
